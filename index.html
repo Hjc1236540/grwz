@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人展示网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">LOGO</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#hero">首页</a>
+                <a href="#about">关于我</a>
+                <a href="#portfolio">作品集</a>
+                <a href="#contact">联系方式</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero区 -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="https://p7.itc.cn/images01/20210629/50321ba0ff954b7e8c9e75b3756d410a.jpeg"个人头像" loading="lazy">
+                </div>
+                <h1>你好，我叫 [胡俊超]</h1>
+                <p class="slogan">专注于[自媒体、写作、it]的专业人士</p>
+                <div class="tags">
+                    <span class="tag">[看书]</span>
+                    <span class="tag">[写作]</span>
+                    <span class="tag">[驾驶汽车]</span>
+                    <span class="tag">[玩电脑]</span>
+                     <span class="tag">[旅游]</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn primary-btn">查看作品</a>
+                    <a href="#contact" class="btn secondary-btn">联系我</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                <div class="about-intro">
+                    <p>我是一名it工程师，拥有5年的工作经验。我专注于[it互联网]，擅长[制作网站]、[app]和[写作][驾驶汽车c1]。</p>
+                     <p>代表作有《记忆之河》发布于番茄小说 </p>
+                    <p>我热爱解决问题，并且不断学习新技术来提升自己的能力。</p>
+                    <p>我曾在软通动力和百度工作，参与过多个重要项目，积累了丰富的行业经验。</p>
+                    <p>我相信通过持续的学习和实践，能够为团队带来更多价值。</p>
+                    <p>身高：173cm、体重：65kg、血型：O型、长相：一般，不丑也不是很帅。存款：有存款、有车、有房。学历：本科  PS：头发浓密不秃顶，嘿嘿~</p>
+                </div>
+                </div>
+                <div class="timeline">
+                    <h3>职业经历</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2016 - 2022</div>
+                        <div class="timeline-content">
+                            <h4>[卖过飞机票、卖过房子]</h4>
+                            <p>[北京保盛航空服务有限公司、瑞宇房产]</p>
+                            <p>负责[卖机票、收卖租房子]</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2024</div>
+                        <div class="timeline-content">
+                            <h4>[软件开发人员]</h4>
+                            <p>[软通动力和百度]</p>
+                            <p>负责[软件开发和维护]</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 - 至今</div>
+                        <div class="timeline-content">
+                            <h4>[网络写作]</h4>
+                            <p>[番茄]</p>
+                            <p>负责[写小说、还有从事一些自媒体运营]</p>
+                        </div>
+                    </div>
+                <div class="skills">
+                    <h3>技能</h3>
+                    <div class="skill-chart">
+                        <canvas id="skillChart"></canvas>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="progress-item">
+                            <span class="skill-name">[互联网it]</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="skill-name">[写作]</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="skill-name">[驾驶汽车]</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                            <span class="skill-level">80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>作品集</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="web">Web开发</button>
+                <button class="filter-btn" data-filter="mobile">移动端</button>
+                <button class="filter-btn" data-filter="design">设计</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="assets/project1.png" alt="项目1" loading="lazy">
+                    <div class="portfolio-info">
+                        <h3>室内设计网站</h3>
+                        <p>通过直观的内容，向客户展示设计师的优秀作品任客户遴选</p>
+                        <div class="tech-stack">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" class="project-link">查看详情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="mobile">
+                    <img src="assets/project2.png" alt="项目2" loading="lazy">
+                    <div class="portfolio-info">
+                        <h3>眼镜商城</h3>
+                        <p>开发一个可以让客户在商城，筛选自己合适度数和薄厚规格的镜片，可以做到直接下单付款的这个一个app。</p>
+                        <div class="tech-stack">
+                            <span>React Native</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" class="project-link">查看详情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="design">
+                    <img src="assets/project3.png" alt="项目3" loading="lazy">
+                    <div class="portfolio-info">
+                        <h3>懂车帝</h3>
+                        <p>开发一个可以让客户在app上，筛选自己合适规格的汽车，并且可以查看汽车的详细信息，并且可以直接下单然后就会有4s店和经销商客服给您回电跟进。</p>
+                        <div class="tech-stack">
+                            <span>Figma</span>
+                            <span>Photoshop</span>
+                        </div>
+                        <a href="#" class="project-link">查看详情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="assets/project4.png" alt="项目4" loading="lazy">
+                    <div class="portfolio-info">
+                        <h3>小游戏</h3>
+                        <p>参与开发过多个小游戏，包括但不限于：猜数字、简单的问答游戏、简单的互动游戏等。</p>
+                        <div class="tech-stack">
+                            <span>Vue.js</span>
+                            <span>Node.js</span>
+                        </div>
+                        <a href="#" class="project-link">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>联系方式</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">消息</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">发送</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>联系信息</h3>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>chaojunhu521@163.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+86 13082594905</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" id="wechatIcon"><i class="fab fa-weixin"></i></a>
+                    </div>
+                    <div id="wechatQR" class="wechat-qr">
+                        <p>微信号：qcgz_hjc0821</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 胡俊超. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
