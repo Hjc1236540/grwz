@@ -3,9 +3,9 @@
     { title: '落了白', src: 'https://m701.music.126.net/20260227191846/2bd50697885bee01d7c1836e5ad84acb/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/77216720723/55da/1d42/6040/01e220a704c475a639d002d92500e297.mp3' },
     { title: '山高路远', src: 'https://m701.music.126.net/20260227191932/5879d6364b0c5168df678ac705db41bc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/76875706005/da55/fc5b/cf21/60ba88a66e0734a3097671dbff6cff40.mp3' },
     { title: '白头若是雪可替', src: 'http://fsios.kugou.com/202602272212/2a197b37b2b5e4beadab7478caed8057/v3/d005c036686f081e2f6f5fec20c6b72a/yp/full/pi3_ct310000_s2747454254.mp3' },
-    { title: '重生我在异乡为异客', src: 'hhttp://fsios.kugou.com/202602272222/487da849be2bbd7d221089363cbcfebb/v3/62c3ad217a2c1a2873174b357ddf730d/yp/full/pi3_ct310000_s1867841380.mp3' },
+    { title: '重生我在异乡为异客', src: 'http://fsios.kugou.com/202602272222/487da849be2bbd7d221089363cbcfebb/v3/62c3ad217a2c1a2873174b357ddf730d/yp/full/pi3_ct310000_s1867841380.mp3' },
     { title: '游山恋', src: 'http://fsios.kugou.com/202602272224/f5f08a40d0f8a4760a3a4ec896281bfc/v3/a4789ba8d51d6cdd83f474b30d970d55/yp/full/pi3_ct310000_s537190673.mp3' },
-    { title: '知我', src: 'hhttp://fsios.kugou.com/202602272235/44df1f36bd03ee00f4bfefb96c258de3/v3/98c39cfcba6ddbdef8474ffd8326f40f/yp/full/pi3_ct310000_s1766907773.mp3' }
+    { title: '知我', src: 'http://fsios.kugou.com/202602272235/44df1f36bd03ee00f4bfefb96c258de3/v3/98c39cfcba6ddbdef8474ffd8326f40f/yp/full/pi3_ct310000_s1766907773.mp3' }
 ];
 
 let currentSongIndex = 0;
