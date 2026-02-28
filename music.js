@@ -5,7 +5,10 @@
     { title: '白头若是雪可替', src: 'http://fsios.kugou.com/202602272212/2a197b37b2b5e4beadab7478caed8057/v3/d005c036686f081e2f6f5fec20c6b72a/yp/full/pi3_ct310000_s2747454254.mp3' },
     { title: '重生我在异乡为异客', src: 'http://fsios.kugou.com/202602272222/487da849be2bbd7d221089363cbcfebb/v3/62c3ad217a2c1a2873174b357ddf730d/yp/full/pi3_ct310000_s1867841380.mp3' },
     { title: '游山恋', src: 'http://fsios.kugou.com/202602272224/f5f08a40d0f8a4760a3a4ec896281bfc/v3/a4789ba8d51d6cdd83f474b30d970d55/yp/full/pi3_ct310000_s537190673.mp3' },
-    { title: '知我', src: 'http://fsios.kugou.com/202602272235/44df1f36bd03ee00f4bfefb96c258de3/v3/98c39cfcba6ddbdef8474ffd8326f40f/yp/full/pi3_ct310000_s1766907773.mp3' }
+    { title: '知我', src: 'http://fsios.kugou.com/202602272235/44df1f36bd03ee00f4bfefb96c258de3/v3/98c39cfcba6ddbdef8474ffd8326f40f/yp/full/pi3_ct310000_s1766907773.mp3' },
+    { title: '我在人间逍遥游', src: 'http://fsios.kugou.com/202602281056/b28a3e92fd5e4bf556c99913b8c9e17a/v3/a7f251a04baf32bfbd246ebd545a1f0c/yp/full/pi3_ct310000_s444028657.mp3' },
+    { title: '雪山开出了格桑花', src: 'http://fsios.kugou.com/202602281057/1948e1925c8fe4fcb363d03e66064577/v3/569bf5f949ff403d08b9f934c3b51025/yp/full/pi3_ct310000_s4280359964.mp3' },
+    { title: '月亮照山川', src: 'http://fsios.kugou.com/202602281107/cd46e7a03b953ede36bb8288c2877ea0/v3/9bbb2b020be26dd4c0e65d3d502bf115/yp/full/pi3_ct310000_s2840147546.mp3' }
 ];
 
 let currentSongIndex = 0;
