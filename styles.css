@@ -1,3 +1,4 @@
+
 /* 全局样式 */
 * {
     margin: 0;
@@ -80,6 +81,51 @@ body {
     color: #fff;
     text-decoration: none;
     letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.logo-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    background-color: #00bcd4;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(0,188,212,0.3);
+}
+
+.logo-tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #00bcd4;
+}
+
+.logo:hover .logo-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.logo-mobile-hint {
+    display: none;
+    font-size: 12px;
+    color: #00bcd4;
+    margin-top: 5px;
+    text-align: center;
 }
 
 .nav-links {
@@ -380,7 +426,24 @@ body {
     border-color: #00bcd4;
 }
 
-.form-group textarea {
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #00bcd4;
+}
+
+.contact-form textarea {
     resize: vertical;
     min-height: 150px;
 }
@@ -400,12 +463,16 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.contact-item i {
-    font-size: 24px;
-    color: #00bcd4;
+.contact-icon {
+    font-size: 32px;
     margin-right: 20px;
-    width: 40px;
-    text-align: center;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 50%;
 }
 
 .contact-item h3 {
@@ -443,6 +510,14 @@ footer p {
     
     .navbar .container {
         flex-direction: column;
+    }
+    
+    .logo-tooltip {
+        display: none;
+    }
+    
+    .logo-mobile-hint {
+        display: block;
     }
     
     .nav-links {
