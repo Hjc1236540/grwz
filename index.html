@@ -168,7 +168,7 @@
     <script src="music.js"></script>
     <script>
         // 智普AI聊天功能
-        const ZHIPU_API_KEY = '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';
+        const ZHIPU_API_KEY = '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';
         const ZHIPU_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
         let zhipuConversationHistory = [
@@ -257,6 +257,16 @@
             showZhipuChatTyping();
             
             try {
+                console.log('Sending request to:', ZHIPU_API_URL);
+                console.log('Using model:', 'z-ai/glm-4.5-air');
+                console.log('Request data:', {
+                    model: 'z-ai/glm-4.5-air',
+                    messages: zhipuConversationHistory,
+                    temperature: 0.7,
+                    max_tokens: 1000,
+                    stream: false
+                });
+                
                 const response = await fetch(ZHIPU_API_URL, {
                     method: 'POST',
                     headers: {
@@ -273,15 +283,49 @@
                 });
                 
                 console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
                 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error('Error data:', errorData);
-                    throw new Error(errorData.error?.message || 'API request failed');
+                    try {
+                        const clonedResponse = response.clone();
+                        const errorData = await clonedResponse.json();
+                        console.error('Error data:', errorData);
+                        throw new Error(errorData.error?.message || 'API request failed');
+                    } catch (e) {
+                        const errorText = await response.text();
+                        console.error('Error text:', errorText);
+                        throw new Error('API request failed: ' + errorText);
+                    }
                 }
                 
                 const data = await response.json();
                 console.log('Response data:', data);
+                
+                // 检查响应数据格式
+                if (!data) {
+                    throw new Error('Empty API response');
+                }
+                
+                if (!data.choices) {
+                    throw new Error('No choices in API response');
+                }
+                
+                if (data.choices.length === 0) {
+                    throw new Error('Empty choices array in API response');
+                }
+                
+                if (!data.choices[0]) {
+                    throw new Error('First choice is undefined');
+                }
+                
+                if (!data.choices[0].message) {
+                    throw new Error('No message in first choice');
+                }
+                
+                if (!data.choices[0].message.content) {
+                    throw new Error('No content in message');
+                }
+                
                 const aiMessage = data.choices[0].message.content;
                 
                 zhipuConversationHistory.push({
