@@ -26,7 +26,8 @@
     { title: '夜萤火虫', src: './music/music17yhc.mp3' },
     { title: '风之谷', src: './music/music18fzg.mp3' },
     { title: '一点点', src: './music/music19ydd.mp3' },
-    { title: '多幸运', src: './music/music20dxy.mp3' }
+    { title: '多幸运', src: './music/music20dxy.mp3' },
+    { title: '吴哥窟', src: './music/music30wggk.mp3' }
 ];
 
 let currentSongIndex = 0;
