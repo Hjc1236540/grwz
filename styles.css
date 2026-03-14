@@ -922,15 +922,15 @@ footer p {
     }
 }
 
-/* 智普AI聊天功能样式 */
-.zhipu-chat-sidebar {
+/* 豆包聊天功能样式 */
+.doubao-chat-sidebar {
     position: fixed;
     right: 20px;
     bottom: 20px;
     z-index: 1000;
 }
 
-.zhipu-chat-button {
+.doubao-chat-button {
     background-color: #00bcd4;
     color: #fff;
     width: 60px;
@@ -944,12 +944,12 @@ footer p {
     transition: all 0.3s ease;
 }
 
-.zhipu-chat-button:hover {
+.doubao-chat-button:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0,188,212,0.4);
 }
 
-.zhipu-chat-window {
+.doubao-chat-window {
     position: absolute;
     right: 0;
     bottom: 80px;
@@ -967,13 +967,13 @@ footer p {
     transition: all 0.3s ease;
 }
 
-.zhipu-chat-window.show {
+.doubao-chat-window.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.zhipu-chat-header {
+.doubao-chat-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     padding: 15px 20px;
@@ -982,13 +982,13 @@ footer p {
     align-items: center;
 }
 
-.zhipu-chat-header h3 {
+.doubao-chat-header h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
 }
 
-.zhipu-chat-close {
+.doubao-chat-close {
     background: transparent;
     border: none;
     color: #fff;
@@ -1004,46 +1004,46 @@ footer p {
     transition: background-color 0.3s ease;
 }
 
-.zhipu-chat-close:hover {
+.doubao-chat-close:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.zhipu-chat-messages {
+.doubao-chat-messages {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
 }
 
-.zhipu-chat-message {
+.doubao-chat-message {
     margin-bottom: 15px;
     display: flex;
     align-items: flex-start;
 }
 
-.zhipu-chat-message.user {
+.doubao-chat-message.user {
     justify-content: flex-end;
 }
 
-.zhipu-chat-message-content {
+.doubao-chat-message-content {
     max-width: 70%;
     padding: 12px 16px;
     border-radius: 18px;
     line-height: 1.4;
 }
 
-.zhipu-chat-message.zhipu .zhipu-chat-message-content {
+.doubao-chat-message.doubao .doubao-chat-message-content {
     background-color: #f0f0f0;
     color: #333;
     border-bottom-left-radius: 5px;
 }
 
-.zhipu-chat-message.user .zhipu-chat-message-content {
+.doubao-chat-message.user .doubao-chat-message-content {
     background-color: #00bcd4;
     color: #fff;
     border-bottom-right-radius: 5px;
 }
 
-.zhipu-chat-typing {
+.doubao-chat-typing {
     display: flex;
     align-items: center;
     padding: 12px 16px;
@@ -1053,7 +1053,7 @@ footer p {
     margin-bottom: 15px;
 }
 
-.zhipu-chat-typing span {
+.doubao-chat-typing span {
     display: inline-block;
     width: 8px;
     height: 8px;
@@ -1063,11 +1063,11 @@ footer p {
     animation: typing 1.4s infinite ease-in-out both;
 }
 
-.zhipu-chat-typing span:nth-child(1) {
+.doubao-chat-typing span:nth-child(1) {
     animation-delay: -0.32s;
 }
 
-.zhipu-chat-typing span:nth-child(2) {
+.doubao-chat-typing span:nth-child(2) {
     animation-delay: -0.16s;
 }
 
@@ -1080,18 +1080,18 @@ footer p {
     }
 }
 
-.zhipu-chat-input-container {
+.doubao-chat-input-container {
     padding: 15px;
     border-top: 1px solid #eee;
 }
 
-.zhipu-chat-input-wrapper {
+.doubao-chat-input-wrapper {
     display: flex;
     align-items: flex-end;
     gap: 10px;
 }
 
-.zhipu-chat-input {
+.doubao-chat-input {
     flex: 1;
     padding: 12px 16px;
     border: 1px solid #ddd;
@@ -1104,11 +1104,11 @@ footer p {
     max-height: 100px;
 }
 
-.zhipu-chat-input:focus {
+.doubao-chat-input:focus {
     border-color: #00bcd4;
 }
 
-.zhipu-chat-send {
+.doubao-chat-send {
     background-color: #00bcd4;
     color: #fff;
     border: none;
@@ -1123,63 +1123,63 @@ footer p {
     flex-shrink: 0;
 }
 
-.zhipu-chat-send:hover {
+.doubao-chat-send:hover {
     background-color: #0097a7;
     transform: scale(1.1);
 }
 
-.zhipu-chat-send:disabled {
+.doubao-chat-send:disabled {
     background-color: #ccc;
     cursor: not-allowed;
     transform: none;
 }
 
-/* 智普AI移动端样式 */
+/* 豆包移动端样式 */
 @media (max-width: 768px) {
-    .zhipu-chat-sidebar {
+    .doubao-chat-sidebar {
         right: 15px;
         bottom: 15px;
     }
     
-    .zhipu-chat-button {
+    .doubao-chat-button {
         width: 50px;
         height: 50px;
     }
     
-    .zhipu-chat-button svg {
+    .doubao-chat-button svg {
         width: 20px;
         height: 20px;
     }
     
-    .zhipu-chat-window {
+    .doubao-chat-window {
         width: 300px;
         height: 400px;
         right: -15px;
         bottom: 70px;
     }
     
-    .zhipu-chat-messages {
+    .doubao-chat-messages {
         padding: 15px;
     }
     
-    .zhipu-chat-message-content {
+    .doubao-chat-message-content {
         max-width: 75%;
         padding: 10px 14px;
     }
 }
 
 @media (max-width: 480px) {
-    .zhipu-chat-window {
+    .doubao-chat-window {
         width: calc(100vw - 30px);
         height: 350px;
     }
     
-    .zhipu-chat-input {
+    .doubao-chat-input {
         padding: 10px 14px;
         font-size: 13px;
     }
     
-    .zhipu-chat-send {
+    .doubao-chat-send {
         width: 40px;
         height: 40px;
     }
