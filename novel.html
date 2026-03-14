@@ -258,6 +258,120 @@
                 document.body.style.overflow = '';
             }
         }
+        
+        // 豆包聊天功能
+        function toggleDoubaoChat() {
+            const chatWindow = document.getElementById('doubao-chat-window');
+            chatWindow.classList.toggle('show');
+        }
+        
+        function handleDoubaoChatKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendDoubaoChatMessage();
+            }
+        }
+        
+        function autoResizeDoubaoChatInput(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+        
+        function sendDoubaoChatMessage() {
+            const input = document.getElementById('doubao-chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // 添加用户消息
+            addDoubaoChatMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // 显示加载状态
+            setDoubaoChatLoadingState(true);
+            
+            // 调用豆包API
+            fetchDoubaoChatResponse(message)
+                .then(response => {
+                    // 添加豆包回复
+                    addDoubaoChatMessage('doubao', response);
+                })
+                .catch(error => {
+                    console.error('豆包API调用失败:', error);
+                    addDoubaoChatMessage('doubao', '抱歉，我暂时无法回答你的问题。请稍后再试。');
+                })
+                .finally(() => {
+                    // 隐藏加载状态
+                    setDoubaoChatLoadingState(false);
+                });
+        }
+        
+        function addDoubaoChatMessage(sender, message) {
+            const messagesContainer = document.getElementById('doubao-chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `doubao-chat-message ${sender}`;
+            messageElement.innerHTML = `
+                <div class="doubao-chat-message-content">${message}</div>
+            `;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function setDoubaoChatLoadingState(isLoading) {
+            const messagesContainer = document.getElementById('doubao-chat-messages');
+            const loadingElement = document.getElementById('doubao-chat-loading');
+            
+            if (isLoading) {
+                if (!loadingElement) {
+                    const newLoadingElement = document.createElement('div');
+                    newLoadingElement.id = 'doubao-chat-loading';
+                    newLoadingElement.className = 'doubao-chat-message doubao doubao-chat-loading';
+                    newLoadingElement.innerHTML = `
+                        <div class="doubao-chat-message-content">
+                            <div class="doubao-chat-loading-indicator"></div>
+                        </div>
+                    `;
+                    messagesContainer.appendChild(newLoadingElement);
+                }
+            } else {
+                if (loadingElement) {
+                    loadingElement.remove();
+                }
+            }
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        async function fetchDoubaoChatResponse(message) {
+            const API_KEY = "42a8ebc6-afe0-41ef-a033-f62ac425b3c4";
+            const API_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions";
+            
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: "Doubao-Seed-1.8",
+                    messages: [
+                        {
+                            role: "user",
+                            content: message
+                        }
+                    ],
+                    temperature: 0.7
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API调用失败: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
     </script>
 </body>
 </html>
