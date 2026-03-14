@@ -120,6 +120,46 @@
         </div>
     </div>
 
+     <div class="doubao-chat-sidebar">
+        <div class="doubao-chat-button" onclick="toggleDoubaoChat()">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+        </div>
+        <div class="doubao-chat-window" id="doubao-chat-window">
+            <div class="doubao-chat-header">
+                <h3>豆包</h3>
+                <button class="doubao-chat-close" onclick="toggleDoubaoChat()">✕</button>
+            </div>
+            <div class="doubao-chat-messages" id="doubao-chat-messages">
+                <div class="doubao-chat-message doubao">
+                    <div class="doubao-chat-message-content">你好！我是豆包，很高兴为你服务。有什么我可以帮助你的吗？</div>
+                </div>
+            </div>
+            <div class="doubao-chat-input-container">
+                <div class="doubao-chat-input-wrapper">
+                    <textarea 
+                        class="doubao-chat-input" 
+                        id="doubao-chat-input" 
+                        placeholder="输入你的消息..."
+                        rows="1"
+                        onkeydown="handleDoubaoChatKeyDown(event)"
+                        oninput="autoResizeDoubaoChatInput(this)"
+                    ></textarea>
+                    <button class="doubao-chat-send" onclick="sendDoubaoChatMessage()">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="music-player-mobile" id="music-player-mobile">
         <button class="music-btn-mobile" onclick="toggleMusic()">
             <svg id="play-icon-mobile" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
