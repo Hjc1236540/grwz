@@ -325,6 +325,15 @@
                 document.body.style.overflow = '';
             }
         }
+        
+         function toggleWechat() {
+            const qrcode = document.getElementById('wechat-qrcode');
+            if (qrcode.style.display === 'block') {
+                qrcode.style.display = 'none';
+            } else {
+                qrcode.style.display = 'block';
+            }
+        }
     </script>
 </body>
 </html>
