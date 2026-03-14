@@ -98,9 +98,9 @@
             <p>微信号：qcgz_hjc0821</p>
         </div>
     </div>
-<!-- 智普AI聊天功能 -->
-    <div class="zhipu-chat-sidebar">
-        <div class="zhipu-chat-button" onclick="toggleZhipuChat()">
+<!-- 豆包聊天功能 -->
+    <div class="doubao-chat-sidebar">
+        <div class="doubao-chat-button" onclick="toggleDoubaoChat()">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
@@ -108,27 +108,27 @@
                 <line x1="15" y1="9" x2="15.01" y2="9"></line>
             </svg>
         </div>
-        <div class="zhipu-chat-window" id="zhipu-chat-window">
-            <div class="zhipu-chat-header">
-                <h3>智普AI</h3>
-                <button class="zhipu-chat-close" onclick="toggleZhipuChat()">✕</button>
+        <div class="doubao-chat-window" id="doubao-chat-window">
+            <div class="doubao-chat-header">
+                <h3>豆包</h3>
+                <button class="doubao-chat-close" onclick="toggleDoubaoChat()">✕</button>
             </div>
-            <div class="zhipu-chat-messages" id="zhipu-chat-messages">
-                <div class="zhipu-chat-message zhipu">
-                    <div class="zhipu-chat-message-content">你好！我是智普AI，很高兴为你服务。有什么我可以帮助你的吗？</div>
+            <div class="doubao-chat-messages" id="doubao-chat-messages">
+                <div class="doubao-chat-message doubao">
+                    <div class="doubao-chat-message-content">你好！我是豆包，很高兴为你服务。有什么我可以帮助你的吗？</div>
                 </div>
             </div>
-            <div class="zhipu-chat-input-container">
-                <div class="zhipu-chat-input-wrapper">
+            <div class="doubao-chat-input-container">
+                <div class="doubao-chat-input-wrapper">
                     <textarea 
-                        class="zhipu-chat-input" 
-                        id="zhipu-chat-input" 
+                        class="doubao-chat-input" 
+                        id="doubao-chat-input" 
                         placeholder="输入你的消息..."
                         rows="1"
-                        onkeydown="handleZhipuChatKeyDown(event)"
-                        oninput="autoResizeZhipuChatInput(this)"
+                        onkeydown="handleDoubaoChatKeyDown(event)"
+                        oninput="autoResizeDoubaoChatInput(this)"
                     ></textarea>
-                    <button class="zhipu-chat-send" onclick="sendZhipuChatMessage()">
+                    <button class="doubao-chat-send" onclick="sendDoubaoChatMessage()">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -167,54 +167,55 @@
 
     <script src="music.js"></script>
     <script>
-        // 智普AI聊天功能
-        const ZHIPU_API_URL = '/api/chat';
+         // 豆包聊天功能
+        const DOUBAO_API_KEY = '42a8ebc6-afe0-41ef-a033-f62ac425b3c4';
+        const DOUBAO_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
 
-        let zhipuConversationHistory = [
+        let doubaoConversationHistory = [
             {
                 role: 'system',
-                content: 'You are an intelligent AI assistant. You are friendly, professional, and helpful. You can answer various questions and provide useful suggestions. Please respond in Chinese.'
+                content: '你是人工智能助手.'
             }
         ];
 
-        function toggleZhipuChat() {
-            const chatWindow = document.getElementById('zhipu-chat-window');
+        function toggleDoubaoChat() {
+            const chatWindow = document.getElementById('doubao-chat-window');
             if (chatWindow.classList.contains('show')) {
                 chatWindow.classList.remove('show');
             } else {
                 chatWindow.classList.add('show');
-                document.getElementById('zhipu-chat-input').focus();
+                document.getElementById('doubao-chat-input').focus();
             }
         }
 
-        function handleZhipuChatKeyDown(event) {
+        function handleDoubaoChatKeyDown(event) {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
-                sendZhipuChatMessage();
+                sendDoubaoChatMessage();
             }
         }
 
-        function autoResizeZhipuChatInput(textarea) {
+        function autoResizeDoubaoChatInput(textarea) {
             textarea.style.height = 'auto';
             textarea.style.height = Math.min(textarea.scrollHeight, 100) + 'px';
         }
 
-        function addZhipuChatMessage(content, isUser) {
-            const messagesContainer = document.getElementById('zhipu-chat-messages');
+        function addDoubaoChatMessage(content, isUser) {
+            const messagesContainer = document.getElementById('doubao-chat-messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `zhipu-chat-message ${isUser ? 'user' : 'zhipu'}`;
+            messageDiv.className = `doubao-chat-message ${isUser ? 'user' : 'doubao'}`;
             messageDiv.innerHTML = `
-                <div class="zhipu-chat-message-content">${content}</div>
+                <div class="doubao-chat-message-content">${content}</div>
             `;
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        function showZhipuChatTyping() {
-            const messagesContainer = document.getElementById('zhipu-chat-messages');
+        function showDoubaoChatTyping() {
+            const messagesContainer = document.getElementById('doubao-chat-messages');
             const typingDiv = document.createElement('div');
-            typingDiv.className = 'zhipu-chat-typing';
-            typingDiv.id = 'zhipu-chat-typing';
+            typingDiv.className = 'doubao-chat-typing';
+            typingDiv.id = 'doubao-chat-typing';
             typingDiv.innerHTML = `
                 <span></span>
                 <span></span>
@@ -224,57 +225,47 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        function removeZhipuChatTyping() {
-            const typingIndicator = document.getElementById('zhipu-chat-typing');
+        function removeDoubaoChatTyping() {
+            const typingIndicator = document.getElementById('doubao-chat-typing');
             if (typingIndicator) {
                 typingIndicator.remove();
             }
         }
 
-        function setZhipuChatLoadingState(isLoading) {
-            const sendButton = document.querySelector('.zhipu-chat-send');
-            const input = document.getElementById('zhipu-chat-input');
+        function setDoubaoChatLoadingState(isLoading) {
+            const sendButton = document.querySelector('.doubao-chat-send');
+            const input = document.getElementById('doubao-chat-input');
             sendButton.disabled = isLoading;
             input.disabled = isLoading;
         }
 
-        async function sendZhipuChatMessage() {
-            const input = document.getElementById('zhipu-chat-input');
+        async function sendDoubaoChatMessage() {
+            const input = document.getElementById('doubao-chat-input');
             const message = input.value.trim();
             
             if (!message) return;
             
-            addZhipuChatMessage(message, true);
-            zhipuConversationHistory.push({
+            addDoubaoChatMessage(message, true);
+            doubaoConversationHistory.push({
                 role: 'user',
                 content: message
             });
             
             input.value = '';
-            autoResizeZhipuChatInput(input);
-            setZhipuChatLoadingState(true);
-            showZhipuChatTyping();
+            autoResizeDoubaoChatInput(input);
+            setDoubaoChatLoadingState(true);
+            showDoubaoChatTyping();
             
             try {
-                console.log('Sending request to:', ZHIPU_API_URL);
-                console.log('Using model:', 'z-ai/glm-4.5-air');
-                console.log('Request data:', {
-                    model: 'z-ai/glm-4.5-air',
-                    messages: zhipuConversationHistory,
-                    temperature: 0.7,
-                    max_tokens: 1000,
-                    stream: false
-                });
-                
-                const response = await fetch(ZHIPU_API_URL, {
+                const response = await fetch(DOUBAO_API_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + ZHIPU_API_KEY
+                        'Authorization': 'Bearer ' + DOUBAO_API_KEY
                     },
                     body: JSON.stringify({
-                        model: 'z-ai/glm-4.5-air',
-                        messages: zhipuConversationHistory,
+                        model: 'doubao-seed-1-8-251228',
+                        messages: doubaoConversationHistory,
                         temperature: 0.7,
                         max_tokens: 1000,
                         stream: false
@@ -282,93 +273,45 @@
                 });
                 
                 console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
                 
                 if (!response.ok) {
-                    try {
-                        const clonedResponse = response.clone();
-                        const errorData = await clonedResponse.json();
-                        console.error('Error data:', errorData);
-                        throw new Error(errorData.error?.message || 'API request failed');
-                    } catch (e) {
-                        const errorText = await response.text();
-                        console.error('Error text:', errorText);
-                        throw new Error('API request failed: ' + errorText);
-                    }
+                    const errorData = await response.json();
+                    console.error('Error data:', errorData);
+                    throw new Error(errorData.error?.message || 'API request failed');
                 }
                 
                 const data = await response.json();
                 console.log('Response data:', data);
-                
-                // 检查响应数据格式
-                if (!data) {
-                    throw new Error('Empty API response');
-                }
-                
-                if (!data.choices) {
-                    throw new Error('No choices in API response');
-                }
-                
-                if (data.choices.length === 0) {
-                    throw new Error('Empty choices array in API response');
-                }
-                
-                if (!data.choices[0]) {
-                    throw new Error('First choice is undefined');
-                }
-                
-                if (!data.choices[0].message) {
-                    throw new Error('No message in first choice');
-                }
-                
-                if (!data.choices[0].message.content) {
-                    throw new Error('No content in message');
-                }
-                
                 const aiMessage = data.choices[0].message.content;
                 
-                zhipuConversationHistory.push({
+                doubaoConversationHistory.push({
                     role: 'assistant',
                     content: aiMessage
                 });
                 
-                removeZhipuChatTyping();
-                addZhipuChatMessage(aiMessage, false);
+                removeDoubaoChatTyping();
+                addDoubaoChatMessage(aiMessage, false);
                 
             } catch (error) {
                 console.error('Error:', error);
-                removeZhipuChatTyping();
-                addZhipuChatMessage('抱歉，智普AI调用失败：' + error.message + '。请稍后再试。', false);
-            } finally {
-                setZhipuChatLoadingState(false);
-            }
-        }
-    </script>
-    <script>
-        function toggleWechat() {
-            const qrcode = document.getElementById('wechat-qrcode');
-            if (qrcode.style.display === 'block') {
-                qrcode.style.display = 'none';
-            } else {
-                qrcode.style.display = 'block';
-            }
-        }
-        
-        function openVideo() {
-            const videoModal = document.createElement('div');
-            videoModal.id = 'video-modal';
-            videoModal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;display:flex;flex-direction:column;justify-content:center;align-items:center;';
-            
-            videoModal.innerHTML = '<div style="position:absolute;top:20px;right:20px;color:#fff;font-size:36px;cursor:pointer;z-index:10002;width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.1);" onclick="closeVideo()">✕</div><div style="width:90%;max-width:1000px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.5);"><video id="main-video" controls style="width:100%;height:100%;object-fit:contain;"><source src="./videos/newyear-2026.mp4">您的浏览器不支持视频播放</video></div><p style="color:#fff;margin-top:20px;font-size:16px;">祝您马年大吉，岁岁平安。</p>';
-            
-            document.body.appendChild(videoModal);
-            document.body.style.overflow = 'hidden';
-            
-            videoModal.addEventListener('click', function(e) {
-                if (e.target === videoModal) {
-                    closeVideo();
+                removeDoubaoChatTyping();
+                
+                let errorMessage = '抱歉，豆包API调用失败。';
+                
+                if (error.message.includes('API key format is incorrect')) {
+                    errorMessage += ' API密钥格式不正确，请检查密钥格式。';
+                } else if (error.message.includes('does not exist or you do not have access')) {
+                    errorMessage += ' 模型不存在或没有访问权限，请检查模型名称和API权限。';
+                } else if (error.message.includes('AuthenticationError')) {
+                    errorMessage += ' 认证失败，请检查API密钥是否正确。';
+                } else {
+                    errorMessage += ' 请稍后再试。';
                 }
-            });
+                
+                addDoubaoChatMessage(errorMessage, false);
+            } finally {
+                setDoubaoChatLoadingState(false);
+            }
         }
         
         function closeVideo() {
@@ -385,4 +328,3 @@
     </script>
 </body>
 </html>
-
