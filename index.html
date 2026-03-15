@@ -98,7 +98,7 @@
             <p>微信号：qcgz_hjc0821</p>
         </div>
     </div>
-<!-- 豆包聊天功能 -->
+
     <div class="doubao-chat-sidebar">
         <div class="doubao-chat-button" onclick="toggleDoubaoChat()">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
@@ -167,7 +167,45 @@
 
     <script src="music.js"></script>
     <script>
-         // 豆包聊天功能
+        function toggleWechat() {
+            const qrcode = document.getElementById('wechat-qrcode');
+            if (qrcode.style.display === 'block') {
+                qrcode.style.display = 'none';
+            } else {
+                qrcode.style.display = 'block';
+            }
+        }
+        
+        function openVideo() {
+            const videoModal = document.createElement('div');
+            videoModal.id = 'video-modal';
+            videoModal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;display:flex;flex-direction:column;justify-content:center;align-items:center;';
+            
+            videoModal.innerHTML = '<div style="position:absolute;top:20px;right:20px;color:#fff;font-size:36px;cursor:pointer;z-index:10002;width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.1);" onclick="closeVideo()">✕</div><div style="width:90%;max-width:1000px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.5);"><video id="main-video" controls style="width:100%;height:100%;object-fit:contain;"><source src="./videos/newyear-20261.mp4" type="video/mp4">您的浏览器不支持视频播放</video></div><p style="color:#fff;margin-top:20px;font-size:16px;">祝您马年龙马精神，福寿安康。</p>';
+            
+            document.body.appendChild(videoModal);
+            document.body.style.overflow = 'hidden';
+            
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    closeVideo();
+                }
+            });
+        }
+        
+        function closeVideo() {
+            const modal = document.getElementById('video-modal');
+            if (modal) {
+                const video = modal.querySelector('video');
+                if (video) {
+                    video.pause();
+                }
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // 豆包聊天功能
         const DOUBAO_API_KEY = '42a8ebc6-afe0-41ef-a033-f62ac425b3c4';
         const DOUBAO_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
 
@@ -311,27 +349,6 @@
                 addDoubaoChatMessage(errorMessage, false);
             } finally {
                 setDoubaoChatLoadingState(false);
-            }
-        }
-        
-        function closeVideo() {
-            const modal = document.getElementById('video-modal');
-            if (modal) {
-                const video = modal.querySelector('video');
-                if (video) {
-                    video.pause();
-                }
-                modal.remove();
-                document.body.style.overflow = '';
-            }
-        }
-        
-         function toggleWechat() {
-            const qrcode = document.getElementById('wechat-qrcode');
-            if (qrcode.style.display === 'block') {
-                qrcode.style.display = 'none';
-            } else {
-                qrcode.style.display = 'block';
             }
         }
     </script>
