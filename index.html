@@ -616,25 +616,32 @@
             translateButton.disabled = true;
             
             try {
-                // 使用LibreTranslate官方API
-                const response = await fetch('https://translate.argosopentech.com/translate', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        q: input,
-                        source: sourceLang,
-                        target: targetLang
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+                // 使用MyMemory翻译API
+                const encodedInput = encodeURIComponent(input);
+                // 确保语言代码格式正确（大写）
+                // MyMemory API不支持自动检测，根据输入文本智能判断源语言
+                let source;
+                if (sourceLang === 'auto') {
+                    // 简单判断：如果包含中文字符，源语言设为中文，否则设为英文
+                    const hasChinese = /[\u4e00-\u9fa5]/.test(input);
+                    source = hasChinese ? 'ZH' : 'EN';
+                } else {
+                    source = sourceLang.toUpperCase();
+                }
+                const target = targetLang.toUpperCase();
+                const langPair = `${source}|${target}`;
+                const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodedInput}&langpair=${langPair}`);
                 
                 if (!response.ok) {
                     throw new Error('翻译请求失败');
                 }
                 
                 const data = await response.json();
-                outputDiv.textContent = data.translatedText;
+                if (data.responseData && data.responseData.translatedText) {
+                    outputDiv.textContent = data.responseData.translatedText;
+                } else {
+                    throw new Error('翻译结果无效');
+                }
             } catch (error) {
                 console.error('翻译错误:', error);
                 outputDiv.textContent = '翻译失败，请稍后重试';
