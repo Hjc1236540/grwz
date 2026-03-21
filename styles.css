@@ -1458,35 +1458,37 @@ footer p {
     }
 }
 
-/* 天气功能样式 */
-.weather-sidebar {
-    position: relative;
+/* 翻译功能样式 */
+.translate-sidebar {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    transform: none;
     z-index: 1000;
+    cursor: pointer;
 }
 
-.weather-icon {
+.translate-icon {
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: #fff;
-    width: 36px;
-    height: 36px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
     transition: all 0.3s ease;
 }
 
-.weather-icon:hover {
+.translate-icon:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.5);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
 }
 
-.weather-window {
+.translate-window {
     position: absolute;
-    right: 0;
-    top: 46px;
+    left: 0;
+    bottom: 70px;
     width: 450px;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 15px;
@@ -1496,12 +1498,12 @@ footer p {
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
+    transform: translateY(10px);
     transition: all 0.3s ease;
     z-index: 1001;
 }
 
-.weather-window.show {
+.translate-window.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -1519,7 +1521,8 @@ footer p {
     }
 }
 
-.weather-header {
+/* 翻译窗口内容样式 */
+.translate-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     padding: 18px;
@@ -1528,184 +1531,581 @@ footer p {
     align-items: center;
 }
 
-.weather-header h3 {
+.translate-header h3 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-.weather-refresh {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    padding: 4px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    color: #fff;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.weather-refresh:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-.weather-content {
+.translate-content {
     padding: 20px;
     flex: 1;
 }
 
-.weather-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 50px 0;
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(102, 126, 234, 0.2);
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.translate-input-group {
     margin-bottom: 20px;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.weather-loading p {
-    color: #666;
-    font-size: 14px;
-    margin: 0;
-}
-
-.weather-main {
-    text-align: center;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
-
-.weather-main:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.weather-location {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-}
-
-.weather-date {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.weather-temp {
-    font-size: 40px;
-    font-weight: 700;
-    color: #333;
+.translate-input-group label {
+    display: block;
     margin-bottom: 8px;
-    font-family: 'Arial', sans-serif;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.weather-description {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 15px;
-    text-transform: capitalize;
-}
-
-.weather-range {
+    font-weight: 600;
+    color: #2c3e50;
     font-size: 14px;
-    color: #777;
-    background: rgba(102, 126, 234, 0.1);
-    padding: 8px 20px;
-    border-radius: 20px;
-    display: inline-block;
 }
 
-.weather-details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 15px;
+.translate-input-group textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-.weather-detail-item {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    border-radius: 12px;
+.translate-input-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.translate-controls {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.weather-detail-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+.language-select {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
 }
 
-.weather-detail-icon {
-    font-size: 20px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.language-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.translate-btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
-    border-radius: 10px;
-    flex-shrink: 0;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.weather-detail-info {
-    flex: 1;
+.translate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-.weather-detail-label {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 3px;
-    text-transform: uppercase;
+.translate-result {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 80px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2c3e50;
+}
+
+.translate-result.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7f8c8d;
+}
+
+.translate-result.error {
+    color: #e74c3c;
+}
+
+@media (max-width: 480px) {
+    .navbar .container {
+        padding: 0 15px !important;
+    }
+    
+    .logo {
+        font-size: 20px !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .nav-links {
+        gap: 10px !important;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    
+    /* 移动端翻译功能样式 */
+    .translate-sidebar {
+        left: 10px !important;
+        bottom: 10px !important;
+    }
+    
+    .translate-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .translate-window {
+        width: 300px;
+        left: -10px;
+        bottom: 60px;
+    }
+    
+    .translate-header h3 {
+        font-size: 14px;
+    }
+    
+    .translate-input-group textarea {
+        min-height: 80px;
+        font-size: 13px;
+    }
+    
+    .translate-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .language-select {
+        width: 100%;
+    }
+    
+    .translate-btn {
+        width: 100%;
+    }
+    
+    .translate-result {
+        font-size: 13px;
+    }
+}
+
+/* 音乐播放器样式 */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.music-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+}
+
+.music-window {
+    position: absolute;
+    right: 0;
+    bottom: 70px;
+    width: 350px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.music-window.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.music-info {
+    text-align: center;
+}
+
+.music-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.music-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.music-control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.music-control-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.music-control-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #2c3e50;
+    stroke-width: 2;
+}
+
+.music-control-btn.play-pause {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.music-control-btn.play-pause svg {
+    stroke: #fff;
+}
+
+.music-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.music-progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.music-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+@media (max-width: 480px) {
+    .music-player {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .music-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .music-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .music-window {
+        width: 300px;
+        right: 0;
+        bottom: 60px;
+    }
+    
+    .music-btn {
+        padding: 8px;
+    }
+    
+    .music-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* 翻译功能样式 */
+.translate-sidebar {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    transform: none;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.translate-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    transition: all 0.3s ease;
+}
+
+.translate-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+}
+
+.translate-window {
+    position: absolute;
+    left: 0;
+    bottom: 70px;
+    width: 450px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.translate-window.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.translate-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.translate-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-.weather-detail-value {
-    font-size: 18px;
+.translate-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.translate-input-group {
+    margin-bottom: 20px;
+}
+
+.translate-input-group label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: 600;
-    color: #333;
+    color: #2c3e50;
+    font-size: 14px;
 }
 
-.weather-error {
-    text-align: center;
-    padding: 50px 20px;
-    color: #ff4757;
-    background: rgba(255, 71, 87, 0.1);
-    border-radius: 15px;
-    margin: 20px 0;
+.translate-input-group textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-/* 天气功能移动端样式 */
+.translate-input-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.translate-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.language-select {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.language-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.translate-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.translate-result {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 80px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2c3e50;
+}
+
+.translate-result.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7f8c8d;
+}
+
+.translate-result.error {
+    color: #e74c3c;
+}
+
+@media (max-width: 480px) {
+    .navbar .container {
+        padding: 0 15px !important;
+    }
+    
+    .logo {
+        font-size: 20px !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .nav-links {
+        gap: 10px !important;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    
+    /* 移动端翻译功能样式 */
+    .translate-sidebar {
+        left: 10px !important;
+        bottom: 10px !important;
+    }
+    
+    .translate-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .translate-window {
+        width: 300px;
+        left: -10px;
+        bottom: 60px;
+    }
+    
+    .translate-header h3 {
+        font-size: 14px;
+    }
+    
+    .translate-input-group textarea {
+        min-height: 80px;
+        font-size: 13px;
+    }
+    
+    .translate-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .language-select {
+        width: 100%;
+    }
+    
+    .translate-btn {
+        width: 100%;
+    }
+
+    .translate-result {
+        font-size: 13px;
+    }
+}
+
+/* 移动端样式 */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 0;
@@ -1750,47 +2150,6 @@ footer p {
         gap: 10px !important;
     }
     
-    /* 移动端天气功能吸附在右上角 */
-    .weather-sidebar {
-        position: fixed !important;
-        top: 20px !important;
-        right: 20px !important;
-        z-index: 1001 !important;
-    }
-    
-    .weather-icon {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        transition: all 0.3s ease;
-    }
-    
-    .weather-icon:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    }
-    
-    .weather-icon svg {
-        width: 20px;
-        height: 20px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-    }
-    
-    .weather-window {
-        width: 360px;
-        right: 0;
-        top: 50px;
-    }
-    
     .music-btn {
         padding: 8px;
     }
@@ -1799,81 +2158,6 @@ footer p {
         width: 18px;
         height: 18px;
     }
-}
-
-/* 天气预报样式 */
-.weather-forecast-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 20px 0;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.weather-forecast-day {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 80px 1fr 100px;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
-
-.weather-forecast-day:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.forecast-date {
-    text-align: center;
-    font-weight: 600;
-    color: #2c3e50;
-    font-size: 14px;
-}
-
-.forecast-date small {
-    color: #7f8c8d;
-    font-size: 12px;
-}
-
-.forecast-weather {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.forecast-day-weather,
-.forecast-night-weather {
-    font-size: 14px;
-    color: #34495e;
-}
-
-.forecast-day-weather {
-    font-weight: 500;
-}
-
-.forecast-night-weather {
-    color: #7f8c8d;
-    font-size: 13px;
-}
-
-.forecast-wind {
-    text-align: right;
-    font-size: 13px;
-    color: #5a6c7d;
-}
-
-.weather-report-time {
-    text-align: center;
-    font-size: 12px;
-    color: #7f8c8d;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 @media (max-width: 480px) {
@@ -1890,72 +2174,14 @@ footer p {
     .nav-links {
         gap: 10px !important;
     }
-    
+
     .nav-links a {
         font-size: 12px;
         padding: 4px 8px;
     }
-    
-    /* 移动端天气功能吸附在右上角 - 更小屏幕 */
-    .weather-sidebar {
-        position: fixed !important;
-        top: 15px !important;
-        right: 15px !important;
-        z-index: 1001 !important;
-    }
-    
-    .weather-icon {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .weather-icon svg {
-        width: 16px;
-        height: 16px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-    }
-    
-    .weather-window {
-        width: 320px;
-        right: 0;
-        top: 45px;
-    }
-    
-    .music-btn {
-        padding: 6px;
-    }
-    
-    .music-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
+
     .navbar-right {
         gap: 8px !important;
-    }
-}
-
-/* 更小屏幕的天气预报样式 */
-@media (max-width: 480px) {
-    .weather-forecast-day {
-        grid-template-columns: 60px 1fr 80px;
-        padding: 12px;
-        gap: 10px;
-    }
-    
-    .forecast-date {
-        font-size: 12px;
-    }
-    
-    .forecast-day-weather,
-    .forecast-night-weather {
-        font-size: 12px;
-    }
-    
-    .forecast-wind {
-        font-size: 11px;
     }
 }
 
