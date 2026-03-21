@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>联系方式 - 个人展示网站</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+        let musicSearchToggleLock = false;
+        function toggleMusicSearch() {
+            if (musicSearchToggleLock) return;
+            musicSearchToggleLock = true;
+            setTimeout(() => { musicSearchToggleLock = false; }, 300);
+            
+            const popup = document.getElementById('music-search-popup');
+            if (popup) {
+                if (popup.style.display === 'block') {
+                    popup.style.display = 'none';
+                } else {
+                    popup.style.display = 'block';
+                    const input = document.getElementById('music-search-input');
+                    if (input) {
+                        input.focus();
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -51,30 +72,20 @@
                     </div>
                 </div>
                 
-                <div class="music-player">
-                    <button class="music-btn" onclick="toggleMusic()">
-                        <svg id="play-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                <!-- 音乐搜索 -->
+                <div class="music-search-container">
+                    <button class="music-search-btn" onclick="toggleMusicSearch()" ontouchstart="toggleMusicSearch()" title="搜索音乐">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                         </svg>
-                        <svg id="pause-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-                            <rect x="6" y="4" width="4" height="16"></rect>
-                            <rect x="14" y="4" width="4" height="16"></rect>
-                        </svg>
+                        搜索音乐
                     </button>
-                    <button class="music-btn" onclick="prevSong()">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="19 20 9 12 19 4 19 20"></polygon>
-                            <line x1="5" y1="19" x2="5" y2="5"></line>
-                        </svg>
-                    </button>
-                    <button class="music-btn" onclick="nextSong()">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                            <line x1="19" y1="5" x2="19" y2="19"></line>
-                        </svg>
-                    </button>
-                    <div class="music-info">
-                        <span id="current-song">正在播放：示例音乐</span>
+                    <div class="music-search-popup" id="music-search-popup">
+                        <div class="music-search-header">
+                            <input type="text" id="music-search-input" placeholder="搜索音乐..." onkeydown="if(event.key==='Enter')searchMusic()" />
+                            <button onclick="searchMusic()">搜索</button>
+                        </div>
+                        <div class="music-search-results" id="music-search-results"></div>
                     </div>
                 </div>
             </div>
@@ -111,8 +122,8 @@
                 <div class="contact-form">
                     <h3>发送消息</h3>
                     <form id="contact-form">
-                        <input type="text" id="name" placeholder="您的姓名" required>
-                        <input type="email" id="email" placeholder="您的邮箱" required>
+                        <input type="text" id="name" placeholder="您的姓名" required />
+                        <input type="email" id="email" placeholder="您的邮箱" required />
                         <textarea id="message" placeholder="您的留言" rows="5" required></textarea>
                         <button type="submit" class="btn">发送</button>
                     </form>
@@ -229,35 +240,24 @@
         </div>
     </div>
 
-    <div class="music-player-mobile" id="music-player-mobile">
-        <button class="music-btn-mobile" onclick="toggleMusic()">
-            <svg id="play-icon-mobile" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            <svg id="pause-icon-mobile" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
-        </button>
-        <button class="music-btn-mobile" onclick="prevSong()">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="19 20 9 12 19 4 19 20"></polygon>
-                <line x1="5" y1="19" x2="5" y2="5"></line>
-            </svg>
-        </button>
-        <button class="music-btn-mobile" onclick="nextSong()">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                <line x1="19" y1="5" x2="19" y2="19"></line>
-            </svg>
-        </button>
+    <!-- 音乐播放器 -->
+    <div class="music-player-bar" id="music-player-bar" style="display: none;">
+        <div class="music-player-info">
+            <img id="music-cover" src="" alt="封面" />
+            <div class="music-player-text">
+                <span id="music-name">歌曲名</span>
+                <span id="music-artist">艺术家</span>
+            </div>
+        </div>
+        <div class="music-player-controls">
+            <button onclick="prevSong()"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+            <button onclick="togglePlay()" id="play-pause-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <button onclick="nextSong()"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+        </div>
+        <button class="music-player-close" onclick="closeMusicPlayer()">×</button>
     </div>
-
-
-
-    <audio id="audio-player" preload="auto"></audio>
-
-    <script src="music.js"></script>
+    
+    <audio id="audio-player" preload="auto"> </audio>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         emailjs.init('v41YBHziPjDDBYRHW');
@@ -311,7 +311,7 @@
             videoModal.id = 'video-modal';
             videoModal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;display:flex;flex-direction:column;justify-content:center;align-items:center;';
             
-            videoModal.innerHTML = '<div style="position:absolute;top:20px;right:20px;color:#fff;font-size:36px;cursor:pointer;z-index:10002;width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.1);" onclick="closeVideo()">✕</div><div style="width:90%;max-width:1000px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.5);"><video id="main-video" controls style="width:100%;height:100%;object-fit:contain;"><source src="./videos/newyear-2026.mp4">您的浏览器不支持视频播放</video></div><p style="color:#fff;margin-top:20px;font-size:16px;">祝您马到成功，万事如意。</p>';
+            videoModal.innerHTML = '<div style="position:absolute;top:20px;right:20px;color:#fff;font-size:36px;cursor:pointer;z-index:10002;width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.1);" onclick="closeVideo()">✕</div><div style="width:90%;max-width:1000px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.5);"><video id="main-video" controls style="width:100%;height:100%;object-fit:contain;"><source src="./videos/newyear-2026.mp4" />您的浏览器不支持视频播放</video></div><p style="color:#fff;margin-top:20px;font-size:16px;">祝您马到成功，万事如意。</p>';
             
             document.body.appendChild(videoModal);
             document.body.style.overflow = 'hidden';
@@ -466,23 +466,9 @@
 
 
         function getWeather() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const lat = position.coords.latitude;
-                        const lon = position.coords.longitude;
-                        fetchCityCodeByCoords(lat, lon);
-                    },
-                    (error) => {
-                        console.error('Geolocation error:', error.message || error);
-                        // 默认使用北京的城市编码 110101
-                        fetchWeatherByCityCode('110101');
-                    }
-                );
-            } else {
-                // 浏览器不支持地理位置，默认使用北京的城市编码 110101
-                fetchWeatherByCityCode('110101');
-            }
+            // 直接使用北京的城市编码，避免地理位置获取的复杂性
+            console.log('Using default city code: 110101');
+            fetchWeatherByCityCode('110101');
         }
 
         async function fetchCityCodeByCoords(lat, lon) {
@@ -578,7 +564,7 @@
                 
                 forecastHTML += `
                     <div class="weather-forecast-day">
-                        <div class="forecast-date">${dayLabel}<br><small>${formattedDate}</small></div>
+                        <div class="forecast-date">${dayLabel}<br /><small>${formattedDate}</small></div>
                         <div class="forecast-weather">
                             <div class="forecast-day-weather">白天: ${day.dayweather} ${day.daytemp}°C</div>
                             <div class="forecast-night-weather">夜间: ${day.nightweather} ${day.nighttemp}°C</div>
@@ -665,6 +651,193 @@
                 translateButton.disabled = false;
             }
         }
+        
+        // 音乐搜索功能
+        let currentPlaylist = [];
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        
+        function toggleMusicSearch() {
+            const popup = document.getElementById('music-search-popup');
+            if (popup.style.display === 'block') {
+                popup.style.display = 'none';
+            } else {
+                popup.style.display = 'block';
+                document.getElementById('music-search-input').focus();
+            }
+        }
+        
+        // 点击其他地方关闭音乐搜索弹窗
+        document.addEventListener('click', function(e) {
+            const container = document.querySelector('.music-search-container');
+            const popup = document.getElementById('music-search-popup');
+            if (container && !container.contains(e.target) && popup) {
+                popup.style.display = 'none';
+            }
+        });
+        
+        async function searchMusic() {
+            const query = document.getElementById('music-search-input').value.trim();
+            const resultsDiv = document.getElementById('music-search-results');
+            
+            if (!query) {
+                resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">请输入搜索关键词</p>';
+                return;
+            }
+            
+            resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">搜索中...</p>';
+            
+            try {
+                const response = await fetch(`https://api.mmp.cc/api/kuwo?action=search_song&msg=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.code === 200 && data.data) {
+                    currentPlaylist = Array.isArray(data.data) ? data.data : [data.data];
+                    displayMusicResults(currentPlaylist);
+                } else {
+                    resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">未找到相关音乐</p>';
+                }
+            } catch (error) {
+                console.error('搜索音乐失败:', error);
+                resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">搜索失败，请稍后重试</p>';
+            }
+        }
+        
+        function displayMusicResults(songs) {
+            const resultsDiv = document.getElementById('music-search-results');
+            
+            if (!songs || songs.length === 0) {
+                resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">未找到相关音乐</p>';
+                return;
+            }
+            
+            let html = '';
+            songs.forEach((song, index) => {
+                html += `
+                    <div class="music-result-item" onclick="playMusic(${index})">
+                        <img src="${song.cover || 'https://via.placeholder.com/50'}" alt="${song.name}" />
+                        <div class="music-result-info">
+                            <span class="music-result-name">${song.name}</span>
+                            <span class="music-result-artist">${song.artist}</span>
+                        </div>
+                        <span class="music-result-duration">${song.duration || ''}</span>
+                    </div>
+                `;
+            });
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        function playMusic(index) {
+            if (!currentPlaylist[index]) return;
+            
+            currentSongIndex = index;
+            const song = currentPlaylist[index];
+            const audioPlayer = document.getElementById('audio-player');
+            const playerBar = document.getElementById('music-player-bar');
+            
+            // 设置音频源
+            audioPlayer.src = song.play_url;
+            audioPlayer.play();
+            isPlaying = true;
+            
+            // 显示播放器
+            playerBar.style.display = 'flex';
+            
+            // 更新播放器信息
+            document.getElementById('music-name').textContent = song.name;
+            document.getElementById('music-artist').textContent = song.artist;
+            document.getElementById('music-cover').src = song.cover || 'https://via.placeholder.com/50';
+            
+            // 更新播放按钮图标
+            updatePlayButton();
+            
+            // 关闭搜索弹窗
+            document.getElementById('music-search-popup').style.display = 'none';
+            
+            // 获取推荐歌曲
+            getRecommendedSongs(song.artist);
+        }
+        
+        async function getRecommendedSongs(artist) {
+            try {
+                // 基于艺术家获取推荐歌曲
+                const response = await fetch(`https://api.kuwo.cn/api/www/search/searchMusicBykeyWord?key=${encodeURIComponent(artist)}&pn=1&rn=10&httpsStatus=1`);
+                const data = await response.json();
+                
+                if (data.data && data.data.list) {
+                    // 过滤掉当前播放的歌曲，避免重复
+                    const recommendedSongs = data.data.list.filter(item => {
+                        return item.name !== document.getElementById('music-name').textContent;
+                    });
+                    
+                    // 将推荐歌曲添加到播放列表末尾
+                    recommendedSongs.forEach(item => {
+                        // 检查是否已经在播放列表中
+                        const exists = currentPlaylist.some(song => song.name === item.name && song.artist === item.artist);
+                        if (!exists) {
+                            currentPlaylist.push({
+                                name: item.name,
+                                artist: item.artist,
+                                play_url: `https://api.kuwo.cn/api/v1/www/music/playUrl?mid=${item.musicrid.replace('MUSIC_', '')}&httpsStatus=1`,
+                                cover: item.pic
+                            });
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('获取推荐歌曲失败:', error);
+            }
+        }
+        
+        function togglePlay() {
+            const audioPlayer = document.getElementById('audio-player');
+            
+            if (isPlaying) {
+                audioPlayer.pause();
+                isPlaying = false;
+            } else {
+                audioPlayer.play();
+                isPlaying = true;
+            }
+            
+            updatePlayButton();
+        }
+        
+        function updatePlayButton() {
+            const btn = document.getElementById('play-pause-btn');
+            if (isPlaying) {
+                btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+            } else {
+                btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+            }
+        }
+        
+        function prevSong() {
+            if (currentPlaylist.length === 0) return;
+            currentSongIndex = (currentSongIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+            playMusic(currentSongIndex);
+        }
+        
+        function nextSong() {
+            if (currentPlaylist.length === 0) return;
+            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length;
+            playMusic(currentSongIndex);
+        }
+        
+        function closeMusicPlayer() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playerBar = document.getElementById('music-player-bar');
+            
+            audioPlayer.pause();
+            isPlaying = false;
+            playerBar.style.display = 'none';
+        }
+        
+        // 监听音频播放结束
+        document.getElementById('audio-player').addEventListener('ended', function() {
+            nextSong();
+        });
     </script>
 </body>
 </html>
