@@ -593,11 +593,16 @@ function setupKeyboard() {
             resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">搜索中...</p>';
             
             try {
-                const response = await fetch(`https://api.mmp.cc/api/kuwo?action=search_song&msg=${encodeURIComponent(query)}`);
+                const response = await fetch(`https://met.api.xiaoguan.fit/api?server=netease&type=search&id=${encodeURIComponent(query)}`);
                 const data = await response.json();
                 
-                if (data.code === 200 && data.data) {
-                    currentPlaylist = Array.isArray(data.data) ? data.data : [data.data];
+                if (Array.isArray(data) && data.length > 0) {
+                    currentPlaylist = data.map(item => ({
+                        name: item.title,
+                        artist: item.author,
+                        cover: item.pic,
+                        play_url: item.url
+                    }));
                     displayMusicResults(currentPlaylist);
                 } else {
                     resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">未找到相关音乐</p>';
@@ -667,24 +672,24 @@ function setupKeyboard() {
         async function getRecommendedSongs(artist) {
             try {
                 // 基于艺术家获取推荐歌曲
-                const response = await fetch(`https://api.kuwo.cn/api/www/search/searchMusicBykeyWord?key=${encodeURIComponent(artist)}&pn=1&rn=10&httpsStatus=1`);
+                const response = await fetch(`https://met.api.xiaoguan.fit/api?server=netease&type=search&id=${encodeURIComponent(artist)}`);
                 const data = await response.json();
                 
-                if (data.data && data.data.list) {
+                if (Array.isArray(data) && data.length > 0) {
                     // 过滤掉当前播放的歌曲，避免重复
-                    const recommendedSongs = data.data.list.filter(item => {
-                        return item.name !== document.getElementById('music-name').textContent;
+                    const recommendedSongs = data.filter(item => {
+                        return item.title !== document.getElementById('music-name').textContent;
                     });
                     
                     // 将推荐歌曲添加到播放列表末尾
                     recommendedSongs.forEach(item => {
                         // 检查是否已经在播放列表中
-                        const exists = currentPlaylist.some(song => song.name === item.name && song.artist === item.artist);
+                        const exists = currentPlaylist.some(song => song.name === item.title && song.artist === item.author);
                         if (!exists) {
                             currentPlaylist.push({
-                                name: item.name,
-                                artist: item.artist,
-                                play_url: `https://api.kuwo.cn/api/v1/www/music/playUrl?mid=${item.musicrid.replace('MUSIC_', '')}&httpsStatus=1`,
+                                name: item.title,
+                                artist: item.author,
+                                play_url: item.url,
                                 cover: item.pic
                             });
                         }
