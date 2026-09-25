@@ -3530,7 +3530,255 @@
         .surname-form {
             padding: 20px;
         }
-        
+
+        /* ===== 智能取名 & 汉语字典 通用弹窗 ===== */
+        .tool-icon.naming {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+
+        .tool-icon.dict {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .tb-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tb-modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 520px;
+            max-height: 82vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .tb-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tb-modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .tb-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .tb-modal-close:hover {
+            color: #333;
+        }
+
+        .tb-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .tb-result {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            max-height: 320px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .tb-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        /* 密钥配置 */
+        .tb-apikey {
+            margin-top: 16px;
+            border-top: 1px dashed #e3e3e3;
+            padding-top: 12px;
+        }
+
+        .tb-apikey summary {
+            cursor: pointer;
+            font-size: 13px;
+            color: #4facfe;
+            user-select: none;
+            list-style: none;
+            outline: none;
+        }
+
+        .tb-apikey summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .tb-apikey summary::before {
+            content: "⚙️ ";
+        }
+
+        .tb-apikey[open] summary {
+            margin-bottom: 12px;
+        }
+
+        .tb-apikey input {
+            margin-bottom: 8px;
+        }
+
+        .tb-key-saved {
+            font-size: 12px;
+            color: #4caf50;
+            margin-top: 6px;
+        }
+
+        /* 取名结果卡片 */
+        .name-source {
+            font-size: 12px;
+            color: #aaa;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .name-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .name-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .name-card-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ff6b9d;
+            letter-spacing: 1px;
+        }
+
+        .name-card-score {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #ff6b9d, #ff9a6b);
+            padding: 3px 14px;
+            border-radius: 20px;
+        }
+
+        .name-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .name-tag {
+            font-size: 12px;
+            color: #ff6b9d;
+            background: #fff0f5;
+            border: 1px solid #ffd6e4;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        .name-card-desc {
+            font-size: 13px;
+            color: #777;
+            margin-top: 9px;
+            line-height: 1.6;
+        }
+
+        /* 字典结果 */
+        .dict-hero {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .dict-char {
+            font-size: 54px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .dict-pinyin {
+            color: #4facfe;
+            font-size: 18px;
+            margin-top: 6px;
+        }
+
+        .dict-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .dict-cell {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px 6px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .dict-cell .k {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .dict-cell .v {
+            font-size: 17px;
+            color: #333;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .dict-explain {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .dict-explain pre {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.85;
+            color: #444;
+            margin: 8px 0 0;
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .treasure-box-page {
@@ -4624,6 +4872,30 @@
                     <p>使用UAPI获取国内国际城市实时天气数据，支持多维度天气信息</p>
                     <button class="tool-btn" onclick="openWeatherTool()">打开工具</button>
                 </div>
+
+                <!-- 智能取名工具 -->
+                <div class="tool-card">
+                    <div class="tool-icon naming">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.7 5.8 21.3l2.4-7.4L2 9.4h7.6z"/>
+                        </svg>
+                    </div>
+                    <h3>智能取名</h3>
+                    <p>根据姓氏和性别智能推荐吉祥好名，附带名字评分与五行标签</p>
+                    <button class="tool-btn" onclick="openNamingTool()">打开工具</button>
+                </div>
+
+                <!-- 汉语字典工具 -->
+                <div class="tool-card">
+                    <div class="tool-icon dict">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                        </svg>
+                    </div>
+                    <h3>汉语字典</h3>
+                    <p>查询单个汉字的拼音、繁体、偏旁部首、笔画数和详细释义</p>
+                    <button class="tool-btn" onclick="openDictTool()">打开工具</button>
+                </div>
                 
 
             </div>
@@ -5129,7 +5401,72 @@
             <div id="surname-result" class="surname-result"></div>
         </div>
     </div>
-    
+
+    <!-- 智能取名弹窗 -->
+    <div class="tb-modal" id="naming-modal" style="display: none;">
+        <div class="tb-modal-content">
+            <div class="tb-modal-header">
+                <h3>🎋 智能取名</h3>
+                <button class="tb-modal-close" onclick="closeNamingTool()">✕</button>
+            </div>
+            <div class="tb-modal-body">
+                <div class="form-group">
+                    <label for="naming-surname">姓氏</label>
+                    <input type="text" id="naming-surname" maxlength="4" placeholder="例如：董（支持 1-4 个字）" onkeydown="if(event.key==='Enter')generateNames()">
+                </div>
+                <div class="form-group">
+                    <label for="naming-sex">性别</label>
+                    <select id="naming-sex">
+                        <option value="boy">男孩</option>
+                        <option value="girl">女孩</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="naming-limit">名字数量</label>
+                    <select id="naming-limit">
+                        <option value="3">3 个</option>
+                        <option value="5" selected>5 个</option>
+                    </select>
+                </div>
+                <button class="form-btn" onclick="generateNames()">开始取名</button>
+                <details class="tb-apikey">
+                    <summary>配置聚合数据 API 密钥（可选）</summary>
+                    <input type="text" id="naming-key" placeholder="juhe.cn 智能取名接口 key">
+                    <button class="form-btn" style="padding:8px 16px;" onclick="saveNamingKey()">保存密钥</button>
+                    <div class="tb-key-saved" id="naming-key-tip"></div>
+                    <div class="tb-hint">未配置密钥时使用内置取名引擎，可离线正常使用。配置后将优先调用聚合数据官方接口（免费 50 次/天）。注意：该接口未开放跨域，浏览器直连可能受限，失败时会自动回退到内置引擎。</div>
+                </details>
+            </div>
+            <div id="naming-result" class="tb-result"></div>
+        </div>
+    </div>
+
+    <!-- 汉语字典弹窗 -->
+    <div class="tb-modal" id="dict-modal" style="display: none;">
+        <div class="tb-modal-content">
+            <div class="tb-modal-header">
+                <h3>📖 汉语字典</h3>
+                <button class="tb-modal-close" onclick="closeDictTool()">✕</button>
+            </div>
+            <div class="tb-modal-body">
+                <div class="form-group">
+                    <label for="dict-input">请输入单个汉字</label>
+                    <input type="text" id="dict-input" maxlength="1" placeholder="例如：穆" onkeydown="if(event.key==='Enter')lookupDict()">
+                </div>
+                <button class="form-btn" onclick="lookupDict()">查询</button>
+                <details class="tb-apikey">
+                    <summary>配置 ROLL 开放平台密钥（可选，解锁全量字典）</summary>
+                    <input type="text" id="dict-appid" placeholder="app_id">
+                    <input type="text" id="dict-appsecret" placeholder="app_secret">
+                    <button class="form-btn" style="padding:8px 16px;" onclick="saveDictKeys()">保存密钥</button>
+                    <div class="tb-key-saved" id="dict-key-tip"></div>
+                    <div class="tb-hint">未配置时使用内置常用字库，可离线查询。配置 mxnzp.com 的 app_id / app_secret 后可查询 2 万余汉字（免费 1000 次/天，支持浏览器跨域）。</div>
+                </details>
+            </div>
+            <div id="dict-result" class="tb-result"></div>
+        </div>
+    </div>
+
     <!-- 音乐播放器 -->
     <div class="music-player-bar" id="music-player-bar" style="display: none;">
         <div class="music-player-info">
@@ -5374,12 +5711,18 @@
             resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">搜索中...</p>';
             
             try {
-                const response = await fetch(`https://api.mmp.cc/api/kuwo?action=search_song&msg=${encodeURIComponent(query)}`);
+                const response = await fetch(`https://met.api.xiaoguan.fit/api?server=netease&type=search&id=${encodeURIComponent(query)}`);
                 const data = await response.json();
                 
-                if (data.code === 200 && data.data) {
-                    console.log('API返回数据:', data.data);
-                    currentPlaylist = Array.isArray(data.data) ? data.data : [data.data];
+                if (Array.isArray(data) && data.length > 0) {
+                    console.log('API返回数据:', data);
+                    currentPlaylist = data.map(item => ({
+                        name: item.title,
+                        artist: item.author,
+                        singer: item.author,
+                        cover: item.pic,
+                        play_url: item.url
+                    }));
                     displayMusicResults(currentPlaylist);
                 } else {
                     resultsDiv.innerHTML = '<p style="padding: 20px; text-align: center; color: #999;">未找到相关歌曲</p>';
@@ -6957,6 +7300,449 @@
         }
         
         // 查词语字典功能
+        /* ==================== 智能取名 & 汉语字典 ==================== */
+        function tbEscape(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        /* ---------- 智能取名（内置引擎 + 聚合数据接口） ---------- */
+        // 用字库：[字, 五行]
+        const TB_BOY_NAMES = [
+            ['伟','土'],['强','木'],['磊','土'],['军','木'],['洋','水'],['勇','土'],['杰','木'],
+            ['涛','水'],['明','水'],['超','金'],['刚','金'],['辉','水'],['鹏','水'],['飞','水'],
+            ['龙','火'],['海','水'],['鑫','金'],['波','水'],['斌','水'],['宇','土'],['浩','水'],
+            ['凯','木'],['健','木'],['俊','火'],['帆','水'],['博','水'],['轩','土'],['瑞','金'],
+            ['晨','金'],['睿','金'],['涵','水'],['梓','木'],['然','金'],['皓','木'],['铭','金'],
+            ['泽','水'],['嘉','木'],['煜','火'],['宸','金'],['奕','木'],['智','火'],['毅','木'],
+            ['霖','水'],['弘','水'],['景','木'],['承','金'],['志','火'],['建','木'],['康','木'],
+            ['哲','火'],['翰','水'],['越','土'],['文','水'],['天','火'],['云','水'],['安','土']
+        ];
+        const TB_GIRL_NAMES = [
+            ['芳','木'],['娜','火'],['静','金'],['丽','火'],['敏','水'],['娟','木'],['霞','水'],
+            ['雪','水'],['婷','火'],['萍','水'],['玲','火'],['倩','金'],['琳','木'],['莎','木'],
+            ['颖','木'],['梦','木'],['瑶','火'],['莹','木'],['璐','火'],['欣','木'],['悦','金'],
+            ['妍','水'],['涵','水'],['梓','木'],['雨','水'],['桐','木'],['萱','木'],['琪','木'],
+            ['诗','金'],['怡','土'],['语','木'],['蕊','木'],['馨','金'],['芸','木'],['若','木'],
+            ['妙','水'],['岚','土'],['舒','金'],['锦','金'],['思','金'],['妤','水'],['芷','木'],
+            ['茉','木'],['溪','水'],['姝','金'],['璇','火'],['彤','火'],['雯','水'],['霏','水'],
+            ['萌','木'],['婉','土'],['娴','土'],['婧','木'],['嫣','土'],['晴','火'],['艺','木'],
+            ['依','土'],['可','木'],['月','木'],['洁','水'],['慧','水'],['兰','木'],['曦','火']
+        ];
+
+        function tbHash(s) {
+            let h = 0;
+            for (let i = 0; i < s.length; i++) { h = (h * 131 + s.charCodeAt(i)) >>> 0; }
+            return h;
+        }
+
+        // 内置取名引擎，返回与聚合数据接口一致的结构 {name, score, tag, description}
+        function localNameGen(surname, sex, limit) {
+            const pool = sex === 'girl' ? TB_GIRL_NAMES : TB_BOY_NAMES;
+            const genderTag = sex === 'girl' ? '女孩名' : '男孩名';
+            const wishes = sex === 'girl'
+                ? ['温柔美好', '清雅秀丽', '蕙质兰心', '灵动聪慧', '平安喜乐', '温婉贤淑']
+                : ['前程似锦', '志存高远', '光明磊落', '气宇轩昂', '鹏程万里', '温润如玉'];
+            const eras = ['90后', '00后', '10后'];
+            const used = {};
+            const out = [];
+            let guard = 0;
+            while (out.length < limit && guard < 400) {
+                guard++;
+                const len = Math.random() < 0.78 ? 2 : 1;
+                let given = '';
+                const els = [];
+                for (let i = 0; i < len; i++) {
+                    const item = pool[Math.floor(Math.random() * pool.length)];
+                    if (given.indexOf(item[0]) !== -1) { i--; continue; }
+                    given += item[0];
+                    if (els.indexOf(item[1]) === -1) { els.push(item[1]); }
+                }
+                if (!given || used[given]) { continue; }
+                used[given] = 1;
+                const full = surname + given;
+                const score = 70 + (tbHash(full) % 29); // 70-98
+                const tags = els.map(function (e) { return '五行属' + e; });
+                tags.push(genderTag);
+                if (score >= 90) { tags.push('推荐'); }
+                tags.push(eras[tbHash(given) % eras.length]);
+                out.push({
+                    name: full,
+                    score: String(score),
+                    tag: tags.join(','),
+                    description: '寓意' + wishes[tbHash(given) % wishes.length] + '，名字评分仅供参考。'
+                });
+            }
+            return out;
+        }
+
+        function renderNames(list, source) {
+            const resultDiv = document.getElementById('naming-result');
+            if (!list || !list.length) {
+                resultDiv.innerHTML = '<div class="error-message">未生成合适的名字，请更换姓氏或性别后重试</div>';
+                return;
+            }
+            let html = '<div class="name-source">数据来源：' + tbEscape(source) + '</div>';
+            list.forEach(function (item) {
+                const tags = (item.tag || '').split(',').filter(Boolean);
+                html += '<div class="name-card">'
+                    + '<div class="name-card-head">'
+                    +   '<span class="name-card-name">' + tbEscape(item.name) + '</span>'
+                    +   '<span class="name-card-score">' + tbEscape(item.score) + ' 分</span>'
+                    + '</div>'
+                    + '<div class="name-card-tags">'
+                    +   tags.map(function (t) { return '<span class="name-tag">' + tbEscape(t) + '</span>'; }).join('')
+                    + '</div>'
+                    + (item.description ? '<div class="name-card-desc">' + tbEscape(item.description) + '</div>' : '')
+                    + '</div>';
+            });
+            resultDiv.innerHTML = html;
+        }
+
+        function openNamingTool() {
+            document.getElementById('naming-modal').style.display = 'flex';
+            const k = localStorage.getItem('juhe_naming_key') || '';
+            document.getElementById('naming-key').value = k;
+            document.getElementById('naming-key-tip').textContent = k ? '已配置官方密钥，将优先使用官方接口' : '当前使用内置取名引擎';
+        }
+        function closeNamingTool() {
+            document.getElementById('naming-modal').style.display = 'none';
+        }
+        function saveNamingKey() {
+            const k = document.getElementById('naming-key').value.trim();
+            localStorage.setItem('juhe_naming_key', k);
+            document.getElementById('naming-key-tip').textContent = k ? '已保存：查询时将优先调用官方接口' : '已清除密钥，将使用内置取名引擎';
+        }
+
+        async function generateNames() {
+            const surname = document.getElementById('naming-surname').value.trim();
+            const sex = document.getElementById('naming-sex').value;
+            const limit = parseInt(document.getElementById('naming-limit').value, 10) || 5;
+            const resultDiv = document.getElementById('naming-result');
+            if (!surname) {
+                resultDiv.innerHTML = '<div class="error-message">请输入姓氏</div>';
+                return;
+            }
+            if (surname.length > 4) {
+                resultDiv.innerHTML = '<div class="error-message">姓氏长度支持 1-4 个字</div>';
+                return;
+            }
+            resultDiv.innerHTML = '<div class="result-content">取名中...</div>';
+            const key = (localStorage.getItem('juhe_naming_key') || '').trim();
+            if (key) {
+                try {
+                    const url = 'https://apis.juhe.cn/fapigw/naming/query?key=' + encodeURIComponent(key)
+                        + '&surname=' + encodeURIComponent(surname) + '&sex=' + encodeURIComponent(sex) + '&limit=' + limit;
+                    const resp = await fetch(url);
+                    const json = await resp.json();
+                    if (json && json.error_code === 0 && json.result && Array.isArray(json.result.data) && json.result.data.length) {
+                        renderNames(json.result.data, '聚合数据官方接口');
+                        return;
+                    }
+                    throw new Error((json && json.reason) ? json.reason : ('接口返回异常（错误码 ' + (json && json.error_code) + '）'));
+                } catch (e) {
+                    console.warn('官方取名接口不可用，切换内置取名引擎：', e);
+                    renderNames(localNameGen(surname, sex, limit), '内置取名引擎（官方接口不可用，已自动切换）');
+                    return;
+                }
+            }
+            renderNames(localNameGen(surname, sex, limit), '内置取名引擎');
+        }
+
+        /* ---------- 汉语字典（内置字库 + mxnzp / ROLL 接口） ---------- */
+        // 内置常用字库：字 -> [繁体, 拼音, 偏旁部首, 笔画数, 释义]
+        const LOCAL_DICT = {
+            '爱':['愛','ài','爫',10,'对人或事物有深厚真挚的感情；喜好；爱惜、爱护。'],
+            '安':['安','ān','宀',6,'平静、稳定；安全；安置；怀着（某种不好的念头）。'],
+            '白':['白','bái','白',5,'像雪一样的颜色；明亮；清楚；空空的；陈述、说明。'],
+            '百':['百','bǎi','白',6,'数目，十个十；众多、所有的。'],
+            '宝':['寶','bǎo','宀',8,'珍贵的东西；珍贵的；珍爱、珍视。'],
+            '北':['北','běi','匕',5,'方位名，早晨面对太阳时左手的一边；打了败仗往回跑。'],
+            '本':['本','běn','木',5,'草木的根或干；事物的根源；本来；书本、册子。'],
+            '比':['比','bǐ','比',4,'比较、较量；仿照；比方；紧靠、挨着。'],
+            '笔':['筆','bǐ','竹',10,'写字画图的工具；笔画；写；量词。'],
+            '必':['必','bì','心',5,'一定、必定；必须、一定要。'],
+            '边':['邊','biān','辶',5,'物体的周围部分；边界；方面；用在方位词后。'],
+            '变':['變','biàn','又',8,'和原来不同；改变；突然发生的非常事件。'],
+            '冰':['冰','bīng','冫',6,'水在零摄氏度以下凝结成的固体；因接触凉物而感到寒冷。'],
+            '波':['波','bō','氵',8,'江河湖海起伏的水面；物理学的振动传播；比喻意外变化。'],
+            '博':['博','bó','十',12,'多、广；通晓；取得；赌博。'],
+            '步':['步','bù','止',7,'行走时两脚之间的距离；阶段；境地；用脚走。'],
+            '才':['才','cái','扌',3,'能力；有才能的人；副词，刚刚、仅仅。'],
+            '草':['草','cǎo','艹',9,'草本植物的统称；草率、不细致；草稿。'],
+            '长':['長','cháng','长',4,'两端距离大；长度；长处；经常。又读 zhǎng，生长、首领。'],
+            '常':['常','cháng','巾',11,'一般、普通；长久不变；时常；伦常。'],
+            '车':['車','chē','车',4,'陆地上有轮子的交通运输工具；带轮轴的器械。'],
+            '成':['成','chéng','戈',6,'完成；成功；成为；成果；已定的。'],
+            '城':['城','chéng','土',9,'城墙；城市、都市。'],
+            '春':['春','chūn','日',9,'四季的第一季；比喻生机；男女情欲。'],
+            '此':['此','cǐ','止',6,'这、这个；这儿、这里。'],
+            '从':['從','cóng','人',4,'跟随；依顺；参与；自、由；次要的。'],
+            '大':['大','dà','大',3,'在体积、面积、数量、力量等方面超过一般；大小的程度。'],
+            '道':['道','dào','辶',12,'道路；水流通行处；方向、方法；说；量词。'],
+            '的':['的','de','白',8,'常用结构助词，用在定语后；真实、确实（读 dí/dì）。'],
+            '地':['地','dì','土',6,'地球、地面；土地；地区；境地。'],
+            '东':['東','dōng','一',5,'方位名，太阳出来的一边；主人、东道主。'],
+            '冬':['冬','dōng','夂',5,'四季的第四季。'],
+            '动':['動','dòng','力',6,'改变原来的位置或状态；行动；使用；常常。'],
+            '读':['讀','dú','讠',10,'看着文字念出声；阅读；上学。'],
+            '度':['度','dù','广',9,'计量长短；程度；限度；章程；过、度过。'],
+            '对':['對','duì','寸',5,'回答；向着；对面的；正确；成双的；介词。'],
+            '多':['多','duō','夕',6,'数量大；超出；过分；相差程度大；多么。'],
+            '发':['發','fā','又',5,'送出；产生；表达；扩大；开始行动；揭露。'],
+            '法':['法','fǎ','氵',8,'法律；方法；标准；仿效；佛教的道理。'],
+            '方':['方','fāng','方',4,'四个角为直角的四边形；方向；方法；才、正在。'],
+            '飞':['飛','fēi','飞',3,'鸟虫等鼓动翅膀在空中活动；利用动力机械在空中行动。'],
+            '风':['風','fēng','风',4,'流动的空气；风气、习俗；景象；态度。'],
+            '高':['高','gāo','高',10,'从下向上距离大；高度；等级在上；超过一般。'],
+            '公':['公','gōng','八',4,'属于国家或集体的；共同的；公开；公正；雄性的。'],
+            '古':['古','gǔ','十',5,'时代久远的；经历多年的；真挚朴素。'],
+            '光':['光','guāng','儿',6,'光线；荣誉；景物；光滑；完了；单、只。'],
+            '国':['國','guó','囗',8,'国家；代表国家的；本国的。'],
+            '过':['過','guò','辶',6,'经过；从甲到乙；超过；过失；用在动词后。'],
+            '海':['海','hǎi','氵',10,'靠近大陆比洋小的水域；比喻连成大片的同类事物；大。'],
+            '好':['好','hǎo','女',6,'优点多的；友爱；容易；便于；很、甚。'],
+            '河':['河','hé','氵',8,'天然或人工的大水道；特指银河。'],
+            '黑':['黑','hēi','黑',12,'像煤或墨的颜色；暗；秘密的；恶毒。'],
+            '红':['紅','hóng','纟',6,'像鲜血的颜色；象征喜庆、顺利、成功；象征革命。'],
+            '后':['後','hòu','口',6,'方位词，背面的；时间较晚的；次序靠末尾的；后代。'],
+            '花':['花','huā','艹',7,'植物的繁殖器官；供观赏的植物；颜色错杂；花费。'],
+            '化':['化','huà','亻',4,'性质或形态改变；感化；熔化；化学；造化。'],
+            '话':['話','huà','讠',8,'表达思想的声音或文字；说、谈。'],
+            '欢':['歡','huān','又',6,'快乐、高兴；活跃；起劲。'],
+            '黄':['黃','huáng','黄',11,'像金子或向日葵花的颜色；指黄河；事情失败。'],
+            '回':['迴','huí','囗',6,'曲折环绕；返回；掉转；答复；量词。'],
+            '会':['會','huì','人',6,'聚合；见面；理解；通晓；能够；机会；一定。'],
+            '火':['火','huǒ','火',4,'物体燃烧发出的光焰；枪炮；兴旺；紧急；发怒。'],
+            '机':['機','jī','木',6,'机器；飞机；事物的关键；灵巧；机会。'],
+            '家':['家','jiā','宀',10,'家庭；住所；从事某种工作的人；学术流派；量词。'],
+            '加':['加','jiā','力',5,'合在一起；使数量程度增高；添上。'],
+            '间':['間','jiān','门',7,'中间；一定的空间或时间里；屋子；量词。'],
+            '见':['見','jiàn','见',4,'看到；接触、遇到；看得出；会面；看法。'],
+            '江':['江','jiāng','氵',6,'大河的通称；特指长江。'],
+            '教':['教','jiào','攵',11,'指导、传授知识技能；使、令；宗教。'],
+            '解':['解','jiě','角',13,'剖开；分开；打开；消除；明白；说明。'],
+            '今':['今','jīn','人',4,'现在、现代；当前的；此、这。'],
+            '金':['金','jīn','金',8,'一种金属元素；钱；金属；尊贵；像金子的颜色。'],
+            '进':['進','jìn','辶',7,'向前移动；从外到里；收入；呈上。'],
+            '近':['近','jìn','辶',7,'距离短；接近；亲密；差别小；浅显。'],
+            '经':['經','jīng','纟',8,'织物的纵线；经度；经营；经过；经典；经过。'],
+            '精':['精','jīng','米',14,'经过提炼的；完美；细密；聪明；精神。'],
+            '九':['九','jiǔ','丿',2,'数目，八加一；泛指多数或多次。'],
+            '久':['久','jiǔ','丿',3,'时间长；时间的长短。'],
+            '酒':['酒','jiǔ','氵',10,'用粮食、水果等发酵制成的含酒精饮料。'],
+            '旧':['舊','jiù','日',5,'过时的、与“新”相对；曾经有过的；老交情。'],
+            '开':['開','kāi','一',4,'打开；开始；发动；创立；举行；支付。'],
+            '看':['看','kàn','目',9,'使视线接触人或物；观察；访问；对待；诊治。'],
+            '可':['可','kě','口',5,'允许；能够；值得；大约；连词，表转折。'],
+            '空':['空','kōng','穴',8,'不包含什么；天空；没有结果；白白地；离开地面。'],
+            '口':['口','kǒu','口',3,'嘴；容器通外面处；出入口；裂口；量词。'],
+            '苦':['苦','kǔ','艹',8,'像胆汁或黄连的味道；难受、痛苦；耐心地。'],
+            '快':['快','kuài','忄',7,'速度大；赶紧；将要；敏捷；锋利；爽快。'],
+            '来':['來','lái','木',7,'从别处到说话人处；发生；未来的；从过去到现在。'],
+            '老':['老','lǎo','老',6,'年纪大；时间久；陈旧；原来的；很、极。'],
+            '乐':['樂','lè','丿',5,'快乐、欢喜；乐于；笑；又读 yuè，音乐。'],
+            '里':['裏','lǐ','里',7,'衣物内层；里边；街坊；家乡；长度单位。'],
+            '理':['理','lǐ','王',11,'物质的纹路；道理；管理；整理；理睬。'],
+            '力':['力','lì','力',2,'筋肉的效能；事物的效能；力量；尽力。'],
+            '立':['立','lì','立',5,'站；竖起；建立；制定；存在；马上。'],
+            '丽':['麗','lì','一',7,'好看、漂亮；附着。'],
+            '林':['林','lín','木',8,'成片的树木或竹子；聚集的同类人或事物。'],
+            '六':['六','liù','八',4,'数目，五加一。'],
+            '龙':['龍','lóng','龙',5,'传说中的神异动物；帝王的象征；姓。'],
+            '路':['路','lù','足',13,'道路；路程；途径；条理；方面；种类。'],
+            '马':['馬','mǎ','马',3,'哺乳动物，可供骑乘或拉东西；大。'],
+            '门':['門','mén','门',3,'建筑物的出入口；形状像门的；诀窍；量词。'],
+            '面':['麵','miàn','面',9,'脸；向着；方面；几何学的面；粮食磨成的粉。'],
+            '明':['明','míng','日',8,'明亮；明白、清楚；公开；眼力好；明智。'],
+            '母':['母','mǔ','母',5,'母亲；女性长辈；雌性的；有产生能力的。'],
+            '目':['目','mù','目',5,'眼睛；看；条目；目录；网眼；量词。'],
+            '木':['木','mù','木',4,'树木；木头；质朴；麻木。'],
+            '穆':['穆','mù','禾',16,'恭敬；和畅、美好；和睦；严肃、壮美；姓。'],
+            '南':['南','nán','十',9,'方位名，早晨面对太阳时右手的一边。'],
+            '能':['能','néng','厶',10,'能力、才干；有能力的；能够；能量。'],
+            '你':['你','nǐ','亻',7,'称对方；泛指任何人。'],
+            '年':['年','nián','干',6,'时间单位；岁数；时期；年节。'],
+            '鸟':['鳥','niǎo','鸟',5,'脊椎动物，温血卵生，全身有羽毛，前肢多成翅。'],
+            '农':['農','nóng','冖',6,'农业；农民。'],
+            '女':['女','nǚ','女',3,'女性、女人；女儿。'],
+            '朋':['朋','péng','月',8,'彼此友好的人；结党。'],
+            '平':['平','píng','干',5,'不倾斜；安定；经常的；平定；汉语声调之一。'],
+            '七':['七','qī','一',2,'数目，六加一。'],
+            '气':['氣','qì','气',4,'气体；呼吸；天气；气息；精神状态。'],
+            '起':['起','qǐ','走',10,'由坐卧而站立；离开；长出；发生；开始；量词。'],
+            '千':['千','qiān','十',3,'数目，十个一百；比喻很多。'],
+            '前':['前','qián','丷',9,'正面的方位；向前；次序靠前；过去的、较早的。'],
+            '强':['強','qiáng','弓',12,'健壮、力量大；程度高；好；有余；强迫。'],
+            '亲':['親','qīn','立',9,'有血统或婚姻关系的；亲自；感情好；亲吻。'],
+            '青':['青','qīng','青',8,'深绿或浅蓝色；蓝色；黑色；年轻。'],
+            '秋':['秋','qiū','禾',9,'四季的第三季；庄稼成熟时；一年；某个时期。'],
+            '球':['球','qiú','王',11,'圆形立体物；球形体育用品；地球或星体。'],
+            '人':['人','rén','人',2,'能制造并使用工具劳动的高等动物；每人；别人。'],
+            '日':['日','rì','日',4,'太阳；白天；一昼夜、天；一段时间。'],
+            '如':['如','rú','女',6,'顺从；像、相似；比得上；往、到；假使；例如。'],
+            '三':['三','sān','一',3,'数目，二加一；再三、多次。'],
+            '山':['山','shān','山',3,'地面上土石构成的隆起部分；形状像山的。'],
+            '善':['善','shàn','口',12,'善良；好的行为；高明；友好；擅长；容易。'],
+            '上':['上','shàng','一',3,'位置高的；次序或时间在前的；等级高的；向上。'],
+            '少':['少','shǎo','小',4,'数量小；缺、不够；不经常；短时间；遗失。'],
+            '身':['身','shēn','身',7,'躯体；物体中部；亲身；品格；量词。'],
+            '深':['深','shēn','氵',11,'距离大；深度；深奥；深刻；颜色浓；时间久。'],
+            '生':['生','shēng','生',5,'出生；生长；活着；生疏；学生。'],
+            '声':['聲','shēng','士',7,'声波；声音；名誉；说出来使人知道；量词。'],
+            '十':['十','shí','十',2,'数目，九加一；表示达到顶点。'],
+            '石':['石','shí','石',5,'构成地壳的矿物质硬块；石刻；药石。'],
+            '时':['時','shí','日',7,'时间；规定的时候；季节；现在。'],
+            '世':['世','shì','一',5,'时代；世代相传；世界；世交。'],
+            '事':['事','shì','亅',8,'事情、事物；事故；职业；责任；侍奉。'],
+            '是':['是','shì','日',9,'表示解释、分类或存在；这、此；对、正确。'],
+            '手':['手','shǒu','手',4,'人体上肢前端能拿东西的部分；拿着；亲手；量词。'],
+            '书':['書','shū','乙',4,'成本的著作；信；文件；写字；字体。'],
+            '树':['樹','shù','木',9,'木本植物的通称；种植；建立、树立。'],
+            '水':['水','shuǐ','水',4,'无色无臭透明的液体；江河湖海的通称；液汁。'],
+            '说':['說','shuō','讠',9,'用话表达；介绍；言论；责备；说合。'],
+            '思':['思','sī','心',9,'想、考虑；想念；思路、想法。'],
+            '四':['四','sì','囗',5,'数目，三加一。'],
+            '岁':['歲','suì','山',6,'年；计算年龄的单位；年成。'],
+            '他':['他','tā','亻',5,'称你、我以外的第三人（多指男性）；别的。'],
+            '她':['她','tā','女',6,'称女性第三人称。'],
+            '天':['天','tiān','大',4,'天空；顶部的；一昼夜；季节；天气；天然的。'],
+            '田':['田','tián','田',5,'种植农作物的土地；与农业有关的；打猎。'],
+            '听':['聽','tīng','口',7,'用耳朵接受声音；顺从；任凭；判断。'],
+            '同':['同','tóng','口',6,'一样；共同；跟……相同；和、跟。'],
+            '头':['頭','tóu','大',5,'人或动物的头部；顶端；首领；方面；量词。'],
+            '土':['土','tǔ','土',3,'泥沙混合物；疆域；本地的；民间的；不合潮流。'],
+            '万':['萬','wàn','一',3,'数目，十个一千；比喻很多；极、很。'],
+            '王':['王','wáng','王',4,'古代君主称号；最高封爵；首领；姓。'],
+            '为':['為','wéi','丶',4,'做、行；当做；变成；是；被；助词。'],
+            '文':['文','wén','文',4,'纹理；花纹；文字；文章；温和；文化。'],
+            '我':['我','wǒ','戈',7,'自称、自己。'],
+            '无':['無','wú','一',4,'没有；不；无论。'],
+            '五':['五','wǔ','一',4,'数目，四加一。'],
+            '物':['物','wù','牜',8,'东西、事物；内容实质；外界环境。'],
+            '西':['西','xī','覀',6,'方位名，太阳落下的一边；西方的。'],
+            '喜':['喜','xǐ','口',12,'快乐、高兴；可庆贺的；爱好；适于。'],
+            '下':['下','xià','一',3,'位置低的；次序时间在后的；向下；攻克；少于。'],
+            '夏':['夏','xià','夂',10,'四季的第二季；朝代名；指中国。'],
+            '先':['先','xiān','儿',6,'时间或次序在前的；祖先；尊称死去的人。'],
+            '现':['現','xiàn','王',8,'显露；目前；当场可拿出的；现款。'],
+            '想':['想','xiǎng','心',13,'思索；推测、认为；希望、打算；怀念。'],
+            '心':['心','xīn','心',4,'心脏；思想、感情；中央、枢纽。'],
+            '新':['新','xīn','斤',13,'刚有的；变得更好的；结婚的；新近。'],
+            '信':['信','xìn','亻',9,'诚实；信任；随便；信件；消息；信用。'],
+            '星':['星','xīng','日',9,'发光或反光的天体；细碎的小东西；星象。'],
+            '行':['行','xíng','行',6,'走；旅行用的；流通；从事；能干；可以。'],
+            '性':['性','xìng','忄',8,'人或事物的性质、作用；性格；性别。'],
+            '学':['學','xué','子',8,'学习；学问；学科；学校。'],
+            '雪':['雪','xuě','雨',11,'空中降落的白色冰晶；洗去；白色、纯洁。'],
+            '言':['言','yán','言',7,'讲、说；话；汉语的字；语助词。'],
+            '阳':['陽','yáng','阝',6,'明亮；太阳；山南水北；外露的。'],
+            '样':['樣','yàng','木',10,'形状；种类；做标准的东西。'],
+            '一':['一','yī','一',1,'最小的正整数；纯、专；全、满；相同；短暂。'],
+            '衣':['衣','yī','衣',6,'穿在身上蔽体御寒的东西；器物外罩。'],
+            '意':['意','yì','心',13,'意思、心思；愿望；情态；料想。'],
+            '音':['音','yīn','音',9,'声音；消息；音节。'],
+            '因':['因','yīn','囗',6,'缘故；由于；顺着、沿袭；凭借。'],
+            '友':['友','yǒu','又',4,'有交情的人；亲近和睦；相好。'],
+            '有':['有','yǒu','月',6,'表示存在、所属、发生或估量。'],
+            '鱼':['魚','yú','鱼',8,'生活在水中、通常用鳃呼吸的脊椎动物。'],
+            '雨':['雨','yǔ','雨',8,'从云层中降落的水滴。'],
+            '语':['語','yǔ','讠',9,'话；说；谚语、成语；表达意思的动作。'],
+            '远':['遠','yuǎn','辶',7,'距离长；时间久；关系疏；差别大。'],
+            '月':['月','yuè','月',4,'月亮；计时单位；按月的；形状像月亮的。'],
+            '在':['在','zài','土',6,'存在；处于；留在；参加；介词，表时间地点。'],
+            '早':['早','zǎo','日',6,'清晨；时间靠前的；问候语。'],
+            '张':['張','zhāng','弓',7,'展开；开业；拉紧；看、望；量词。'],
+            '真':['真','zhēn','十',10,'符合事实；确实；清楚；本性。'],
+            '知':['知','zhī','矢',8,'晓得、明了；使知道；知识；主管；了解。'],
+            '之':['之','zhī','丶',3,'助词；代词；往、到；的。'],
+            '中':['中','zhōng','丨',4,'中心；范围内；中间；特指中国。'],
+            '周':['周','zhōu','冂',8,'环绕；周围；普遍；完备；星期；朝代名。'],
+            '主':['主','zhǔ','丶',5,'所有者；最主要的；主张；预示。'],
+            '子':['子','zǐ','子',3,'儿女（多指儿子）；人的通称；种子；地支第一位。'],
+            '自':['自','zì','自',6,'本人、己身；从、由；当然。'],
+            '走':['走','zǒu','走',7,'行路；往来；移动；离开；经过；跑。'],
+            '足':['足','zú','足',7,'脚；器物支撑部分；充分；值得。'],
+            '祖':['祖','zǔ','礻',9,'祖父辈；先代；开始；宗派创始人。'],
+            '最':['最','zuì','日',12,'极、无比；首位的；最大程度。'],
+            '左':['左','zuǒ','工',5,'方位名（面南时靠东）；东方；斜、偏；辅佐。']
+        };
+
+        function renderDict(d, source) {
+            const resultDiv = document.getElementById('dict-result');
+            const expl = (d.explanation == null ? '暂无释义' : String(d.explanation)).replace(/\r\n/g, '\n');
+            resultDiv.innerHTML =
+                '<div class="name-source">数据来源：' + tbEscape(source) + '</div>'
+                + '<div class="dict-hero"><div class="dict-char">' + tbEscape(d.word || '') + '</div>'
+                + '<div class="dict-pinyin">' + tbEscape(d.pinyin || '') + '</div></div>'
+                + '<div class="dict-grid">'
+                +   '<div class="dict-cell"><div class="k">繁体</div><div class="v">' + tbEscape(d.traditional || '—') + '</div></div>'
+                +   '<div class="dict-cell"><div class="k">偏旁部首</div><div class="v">' + tbEscape(d.radicals || '—') + '</div></div>'
+                +   '<div class="dict-cell"><div class="k">笔画数</div><div class="v">' + (d.strokes != null ? tbEscape(String(d.strokes)) : '—') + '</div></div>'
+                + '</div>'
+                + '<div class="dict-explain"><div class="result-title">📝 详细释义</div><pre>' + tbEscape(expl) + '</pre></div>';
+        }
+
+        function openDictTool() {
+            document.getElementById('dict-modal').style.display = 'flex';
+            document.getElementById('dict-appid').value = localStorage.getItem('mxnzp_app_id') || '';
+            document.getElementById('dict-appsecret').value = localStorage.getItem('mxnzp_app_secret') || '';
+            const configured = (localStorage.getItem('mxnzp_app_id') || '') && (localStorage.getItem('mxnzp_app_secret') || '');
+            document.getElementById('dict-key-tip').textContent = configured ? '已配置官方密钥，可查询全量汉字' : '当前使用内置常用字库';
+        }
+        function closeDictTool() {
+            document.getElementById('dict-modal').style.display = 'none';
+        }
+        function saveDictKeys() {
+            const id = document.getElementById('dict-appid').value.trim();
+            const secret = document.getElementById('dict-appsecret').value.trim();
+            localStorage.setItem('mxnzp_app_id', id);
+            localStorage.setItem('mxnzp_app_secret', secret);
+            document.getElementById('dict-key-tip').textContent = (id && secret) ? '已保存：查询时将优先使用官方全量字典' : '密钥不完整，将使用内置常用字库';
+        }
+
+        async function lookupDict() {
+            const raw = document.getElementById('dict-input').value.trim();
+            const resultDiv = document.getElementById('dict-result');
+            if (!raw) {
+                resultDiv.innerHTML = '<div class="error-message">请输入要查询的汉字</div>';
+                return;
+            }
+            const c = raw[0];
+            resultDiv.innerHTML = '<div class="result-content">查询中...</div>';
+            const appId = (localStorage.getItem('mxnzp_app_id') || '').trim();
+            const secret = (localStorage.getItem('mxnzp_app_secret') || '').trim();
+            if (appId && secret) {
+                try {
+                    const url = 'https://www.mxnzp.com/api/convert/dictionary?content=' + encodeURIComponent(c)
+                        + '&app_id=' + encodeURIComponent(appId) + '&app_secret=' + encodeURIComponent(secret);
+                    const resp = await fetch(url);
+                    const json = await resp.json();
+                    if (json && json.code === 1 && Array.isArray(json.data) && json.data[0]) {
+                        renderDict(json.data[0], 'ROLL开放平台官方接口');
+                        return;
+                    }
+                    throw new Error((json && json.msg) ? json.msg : ('接口返回异常（错误码 ' + (json && json.code) + '）'));
+                } catch (e) {
+                    console.warn('官方字典接口不可用，切换内置字库：', e);
+                    if (LOCAL_DICT[c]) {
+                        const a = LOCAL_DICT[c];
+                        renderDict({ word: c, traditional: a[0], pinyin: a[1], radicals: a[2], strokes: a[3], explanation: a[4] }, '内置字库（官方接口不可用，已自动切换）');
+                    } else {
+                        resultDiv.innerHTML = '<div class="error-message">官方接口暂不可用，且内置字库暂未收录“' + tbEscape(c) + '”。请检查密钥或稍后重试。</div>';
+                    }
+                    return;
+                }
+            }
+            if (LOCAL_DICT[c]) {
+                const a = LOCAL_DICT[c];
+                renderDict({ word: c, traditional: a[0], pinyin: a[1], radicals: a[2], strokes: a[3], explanation: a[4] }, '内置常用字库');
+            } else {
+                resultDiv.innerHTML = '<div class="error-message">内置字库暂未收录“' + tbEscape(c) + '”。在下方配置 mxnzp.com 免费密钥（1000 次/天）后，可查询全量 2 万余汉字。</div>';
+            }
+        }
+
         function openWordTool() {
             document.getElementById('word-modal').style.display = 'flex';
         }
